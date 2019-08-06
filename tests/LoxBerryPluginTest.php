@@ -2,7 +2,7 @@
 
 namespace LoxBerryPlugin\Tests;
 
-use LoxBerryPlugin\LoxBerry;
+use LoxBerryPlugin\LoxBerryPlugin;
 use PHPUnit\Framework\TestCase;
 
 /**
