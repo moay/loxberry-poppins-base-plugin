@@ -1,1 +1,1 @@
-* * * * * php $LBPCGI/REPLACELBPDATADIR/var/cron_runner.php
+* * * * * php REPLACELBPDATADIR/var/cron_runner.php
