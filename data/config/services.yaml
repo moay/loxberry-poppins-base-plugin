@@ -1,0 +1,25 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $packageName: '%plugin_name%'
+
+  _instanceof:
+    LoxBerryPlugin\Cron\CronJobInterface:
+      tags: ['plugin.cron_job']
+
+  LoxBerryPlugin\:
+    resource: '../src/*'
+
+  LoxBerry\:
+    resource: '../vendor/moay/loxberry-core/src/*'
+
+  LoxBerryPlugin\Cron\CronJobRunner:
+    public: true
+    arguments:
+      $cronJobs: !tagged plugin.cron_job
+
+  LoxBerry\Logging\Database\LogFileDatabase:
+    factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
