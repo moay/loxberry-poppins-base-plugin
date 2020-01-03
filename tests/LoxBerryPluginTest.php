@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin\Tests;
+namespace Tests;
 
 use LoxBerryPlugin\LoxBerryPlugin;
 use PHPUnit\Framework\TestCase;

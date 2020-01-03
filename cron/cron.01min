@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -x REPLACELBPDATADIR/cron_runner.php ]
+then
+    cd REPLACELBPDATADIR
+    /usr/bin/php REPLACELBPDATADIR/cron_runner.php
+fi

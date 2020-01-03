@@ -1,10 +1,11 @@
 {
-    "name": "moay/loxberry-plugin-base",
+    "name": "moay/loxberry-plugin",
     "description": "The base for LoxBerry plugins in modern, clean PHP",
-    "type": "library",
+    "type": "project",
     "require": {
         "php": ">=7.2",
-        "pear/config_lite": "dev-master"
+        "pear/config_lite": "dev-master",
+        "moay/loxberry-core": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.3",
@@ -24,5 +25,8 @@
             "LoxBerryPlugin\\": "src/",
             "LoxBerryPlugin\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "vendor-dir": "./data/vendor"
     }
 }

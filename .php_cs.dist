@@ -22,13 +22,14 @@
         'is_null' => true,
         'dir_constant' => true,
         'function_to_constant' => true,
+        'no_superfluous_phpdoc_tags' => false,
       ])
       ->setRiskyAllowed(true)
 
       ->setFinder(
           PhpCsFixer\Finder::create()
           ->in([
-            __DIR__.'/src',
+            __DIR__.'/data/src',
             __DIR__.'/tests',
           ])
         ->append([
