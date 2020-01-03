@@ -22,8 +22,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "LoxBerryPlugin\\": "src/",
-            "LoxBerryPlugin\\Tests\\": "tests/"
+            "LoxBerryPlugin\\": "data/src/",
+            "Tests\\": "tests/"
         }
     },
     "config": {
