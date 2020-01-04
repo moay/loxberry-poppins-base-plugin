@@ -32,7 +32,7 @@ class CronJobRunner
     /** @var CronJobInterface[] */
     private $cronJobs = [];
 
-    /** @var CronLogger */
+    /** @var Logger */
     private $logger;
 
     /**

@@ -2,34 +2,52 @@
 
 namespace LoxBerryPlugin\Cron;
 
-use LoxBerry\Logging\Logger;
-use LoxBerry\Logging\Logger\AttributeLogger;
-use LoxBerry\Logging\Logger\EventLogger;
+use LoxBerry\Logging\LoggerFactory;
+use LoxBerry\System\FileNames;
+use LoxBerry\System\PathProvider;
+use LoxBerry\System\Paths;
 
 /**
  * Class CronLogger.
  */
-class CronLogger extends Logger
+class CronLogger
 {
     const LOG_NAME = 'Cron';
 
+    /** @var LoggerFactory */
+    private $loggerFactory;
+
+    /** @var string */
+    private $packageName;
+
+    /** @var PathProvider */
+    private $pathProvider;
+
     /**
      * CronLogger constructor.
-     *
-     * @param string          $packageName
-     * @param EventLogger     $eventLogger
-     * @param AttributeLogger $attributeLogger
+     * @param LoggerFactory $loggerFactory
+     * @param PathProvider $pathProvider
+     * @param $packageName
      */
     public function __construct(
-        string $packageName,
-        EventLogger $eventLogger,
-        AttributeLogger $attributeLogger
+        LoggerFactory $loggerFactory,
+        PathProvider $pathProvider,
+        $packageName
     ) {
-        parent::__construct(
+        $this->loggerFactory = $loggerFactory;
+        $this->packageName = $packageName;
+        $this->pathProvider = $pathProvider;
+    }
+
+    /**
+     * @return \LoxBerry\Logging\Logger
+     */
+    public function __invoke()
+    {
+        return $this->loggerFactory->__invoke(
             self::LOG_NAME,
-            $packageName,
-            $eventLogger,
-            $attributeLogger
-        );
+            $this->packageName,
+            $this->pathProvider->getPath(Paths::PATH_PLUGIN_LOG).'/cron.log'
+            );
     }
 }

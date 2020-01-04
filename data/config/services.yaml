@@ -23,3 +23,6 @@ services:
 
   LoxBerry\Logging\Database\LogFileDatabase:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
+
+  LoxBerryPlugin\Cron\CronLogger:
+    factory: '@LoxBerryPlugin\Cron\CronLogger'
