@@ -7,7 +7,7 @@ TARGETDIR=$PDATA/vendor
 echo "<INFO> Preparing vendor libraries"
 php composer.phar install --no-interaction --no-dev
 find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i "s+'/data/src'+'/src'+g"
-find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i "s+baseDir = dirname(dirname(+baseDir = dirname(+g"
+find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i 's+baseDir = dirname(dirname(vendorDir))+baseDir = dirname($vendorDir)+g'
 
 
 sed -i "s+'/data/src'+'/src'+g" ./data/vendor/composer/autoload_psr4.php
