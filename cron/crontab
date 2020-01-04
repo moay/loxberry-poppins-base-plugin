@@ -1,1 +1,1 @@
-* * * * * loxberry REPLACELBPDATADIR/var/cron_runner.sh
+* * * * * loxberry sh REPLACELBPDATADIR/var/cron_runner.sh
