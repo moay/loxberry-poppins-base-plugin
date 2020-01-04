@@ -6,7 +6,7 @@ TARGETDIR=$PDATA/vendor
 
 echo "<INFO> Preparing vendor libraries"
 php composer.phar install --no-interaction --no-dev
-find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i "s+'/data/src'+'/src'+g"
+find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i "s+\$baseDir . '/data/+\$baseDir . '/+g"
 find ./data/vendor/composer/ -type f -name "*.php" | xargs sed -i "s+\$baseDir = dirname(dirname(\$vendorDir))+\$baseDir = dirname(\$vendorDir)+g"
 
 
