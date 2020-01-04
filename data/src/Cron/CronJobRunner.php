@@ -59,9 +59,14 @@ class CronJobRunner
                 throw new \RuntimeException('Unknown CronJob interval');
             }
             if (0 === round(time() / 60) % $cronJob->getInterval()) {
-                $this->logger->log('Executing CronJob '.get_class($cronJob));
-                $cronJob->execute();
-                $this->logger->log('Finished execution of CronJob '.get_class($cronJob));
+                try {
+                    $this->logger->log('Executing CronJob '.get_class($cronJob));
+                    $cronJob->execute();
+                    $this->logger->success('Finished execution of CronJob '.get_class($cronJob));
+                } catch (\Exception $exception) {
+                    $this->logger->error('Error during cron job execution of CronJob '.get_class($cronJob));
+                }
+
             }
         }
     }
