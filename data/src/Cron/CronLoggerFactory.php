@@ -5,6 +5,7 @@ namespace LoxBerryPlugin\Cron;
 use LoxBerry\Logging\LoggerFactory;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Paths;
+use LoxBerry\System\Plugin\PluginPathProvider;
 
 /**
  * Class CronLoggerFactory.
@@ -19,23 +20,24 @@ class CronLoggerFactory
     /** @var string */
     private $packageName;
 
-    /** @var PathProvider */
+    /** @var PluginPathProvider */
     private $pathProvider;
 
     /**
      * CronLoggerFactory constructor.
      * @param LoggerFactory $loggerFactory
-     * @param PathProvider $pathProvider
+     * @param PluginPathProvider $pathProvider
      * @param $packageName
      */
     public function __construct(
         LoggerFactory $loggerFactory,
-        PathProvider $pathProvider,
+        PluginPathProvider $pathProvider,
         $packageName
     ) {
         $this->loggerFactory = $loggerFactory;
         $this->packageName = $packageName;
         $this->pathProvider = $pathProvider;
+        $this->pathProvider->setPluginName($packageName);
     }
 
     /**
@@ -43,10 +45,12 @@ class CronLoggerFactory
      */
     public function __invoke()
     {
+        $logFileDirectory = $this->pathProvider->getPath(Paths::PATH_PLUGIN_LOG);
+
         return $this->loggerFactory->__invoke(
             self::LOG_NAME,
             $this->packageName,
-            $this->pathProvider->getPath(Paths::PATH_PLUGIN_LOG).'/cron.log'
+            $logFileDirectory.'/cron.log'
             );
     }
 }
