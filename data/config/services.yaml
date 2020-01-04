@@ -4,7 +4,7 @@ services:
     autoconfigure: true
     public: false
     bind:
-      $packageName: '%plugin_name%'
+      $packageName: '%plugin.name%'
       $cronLogger: '@logger_cron'
 
   _instanceof:
