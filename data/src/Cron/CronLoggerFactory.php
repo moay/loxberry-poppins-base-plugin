@@ -3,14 +3,13 @@
 namespace LoxBerryPlugin\Cron;
 
 use LoxBerry\Logging\LoggerFactory;
-use LoxBerry\System\FileNames;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Paths;
 
 /**
- * Class CronLogger.
+ * Class CronLoggerFactory.
  */
-class CronLogger
+class CronLoggerFactory
 {
     const LOG_NAME = 'Cron';
 
@@ -24,7 +23,7 @@ class CronLogger
     private $pathProvider;
 
     /**
-     * CronLogger constructor.
+     * CronLoggerFactory constructor.
      * @param LoggerFactory $loggerFactory
      * @param PathProvider $pathProvider
      * @param $packageName

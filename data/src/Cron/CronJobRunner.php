@@ -39,9 +39,9 @@ class CronJobRunner
      * CronJobRunner constructor.
      *
      * @param iterable   $cronJobs
-     * @param CronLogger $logger
+     * @param Logger $cronLogger
      */
-    public function __construct(iterable $cronJobs, CronLogger $logger)
+    public function __construct(iterable $cronJobs, $cronLogger)
     {
         foreach ($cronJobs as $cronJob) {
             if (!$cronJob instanceof CronJobInterface) {
@@ -49,7 +49,7 @@ class CronJobRunner
             }
             $this->cronJobs[] = $cronJob;
         }
-        $this->logger = $logger;
+        $this->logger = $cronLogger;
     }
 
     public function executeCronJobs()

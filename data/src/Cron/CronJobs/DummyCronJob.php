@@ -5,22 +5,22 @@ namespace LoxBerryPlugin\Cron\CronJobs;
 use LoxBerry\Logging\Logger;
 use LoxBerryPlugin\Cron\CronJobInterface;
 use LoxBerryPlugin\Cron\CronJobRunner;
-use LoxBerryPlugin\Cron\CronLogger;
+use LoxBerryPlugin\Cron\CronLoggerFactory;
 
 /**
  * Class DummyCronJob.
  */
 class DummyCronJob implements CronJobInterface
 {
-    /** @var CronLogger */
+    /** @var Logger */
     private $cronLogger;
 
     /**
      * DummyCronJob constructor.
      *
-     * @param CronLogger $cronLogger
+     * @param CronLoggerFactory $cronLogger
      */
-    public function __construct(CronLogger $cronLogger)
+    public function __construct($cronLogger)
     {
         $this->cronLogger = $cronLogger;
     }
