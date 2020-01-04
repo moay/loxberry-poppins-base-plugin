@@ -26,4 +26,5 @@ services:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
 
   logger_cron:
+    class: 'LoxBerry\Logging\Logger'
     factory: '@LoxBerryPlugin\Cron\CronLoggerFactory'
