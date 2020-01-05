@@ -3,6 +3,6 @@
   <title>PHP-Test</title>
  </head>
  <body>
- <?php echo $_GET['path']; ?>
+ <?php echo $_GET['route']; ?>
  </body>
 </html>
