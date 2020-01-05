@@ -1,8 +1,11 @@
-<html>
- <head>
-  <title>PHP-Test</title>
- </head>
- <body>
- <?php echo '<p>Hallo Welt</p>'; ?>
- </body>
-</html>
+<?php
+
+use LoxBerryPlugin\Core\Frontend\Routing\PageRouter;
+use LoxBerryPlugin\Core\PluginKernel;
+
+require_once REPLACELBPDATADIR . '/vendor/autoload.php';
+
+$kernel = new PluginKernel();
+
+$pageRouter = $kernel->getContainer()->get(PageRouter::class);
+$pageRouter->process($_GET['route'], true);

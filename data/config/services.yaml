@@ -10,6 +10,8 @@ services:
   _instanceof:
     LoxBerryPlugin\Core\Cron\CronJobInterface:
       tags: ['plugin.cron_job']
+    LoxBerryPlugin\Core\Frontend\AbstractController:
+      tags: ['plugin.controller']
 
   LoxBerryPlugin\:
     resource: '../src/*'
@@ -22,8 +24,12 @@ services:
     arguments:
       $cronJobs: !tagged plugin.cron_job
 
-  LoxBerryPlugin\Core\Routing\PageRouter:
+  LoxBerryPlugin\Core\Frontend\Routing\PageRouter:
     public: true
+
+  LoxBerryPlugin\Core\Frontend\Routing\ControllerExecutor:
+    arguments:
+      $controllers: !tagged plugin.controller
 
   LoxBerry\Logging\Database\LogFileDatabase:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
