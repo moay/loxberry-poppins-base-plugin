@@ -63,12 +63,12 @@ class PluginKernel
     private function setupErrorHandler()
     {
         $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
-        if (file_exists(__DIR__.'/plugin.cfg')) {
+        if (file_exists(__DIR__.'../../config/plugin.cfg')) {
             $configuration = new ConfigurationParser(__DIR__ . '/plugin.cfg');
             $pluginName = $configuration->get('PLUGIN', 'NAME');
             $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
         }
-        if (Logger::LOGLEVEL_DEBUG === $logLevel) {
+        if (isset($logLevel) && Logger::LOGLEVEL_DEBUG === $logLevel) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
             $slashtrace = new SlashTrace();
