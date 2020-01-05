@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin;
+namespace LoxBerryPlugin\Core;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class PluginKernel
 {
-    const CONFIG_DIRECTORY = __DIR__.'/../config';
+    const CONFIG_DIRECTORY = __DIR__.'/../../config';
     const DEFAULT_PLUGIN_CONFIGURATION = 'pluginConfiguration.php';
     const DEFAULT_SERVICES_CONFIGURATION = 'services.yaml';
 

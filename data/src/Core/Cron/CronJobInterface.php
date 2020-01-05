@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin\Cron;
+namespace LoxBerryPlugin\Core\Cron;
 
 interface CronJobInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin\Cron;
+namespace LoxBerryPlugin\Core\Cron;
 
 use LoxBerry\Logging\Logger;
 
@@ -38,8 +38,8 @@ class CronJobRunner
     /**
      * CronJobRunner constructor.
      *
-     * @param iterable   $cronJobs
-     * @param Logger $cronLogger
+     * @param iterable $cronJobs
+     * @param Logger   $cronLogger
      */
     public function __construct(iterable $cronJobs, $cronLogger)
     {
@@ -66,7 +66,6 @@ class CronJobRunner
                 } catch (\Exception $exception) {
                     $this->logger->error('Error during cron job execution of CronJob '.get_class($cronJob));
                 }
-
             }
         }
     }

@@ -1,0 +1,12 @@
+admin:
+  default:
+    route: '/'
+    controller: 'LoxBerryPlugin\Controller\DummyController'
+    method: 'testPage'
+  test:
+    route: '/test'
+    controller: 'LoxBerryPlugin\Controller\DummyController'
+    method: 'testPage'
+
+public:
+

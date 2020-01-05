@@ -3,9 +3,9 @@
 namespace LoxBerryPlugin\Cron\CronJobs;
 
 use LoxBerry\Logging\Logger;
-use LoxBerryPlugin\Cron\CronJobInterface;
-use LoxBerryPlugin\Cron\CronJobRunner;
-use LoxBerryPlugin\Cron\CronLoggerFactory;
+use LoxBerryPlugin\Core\Cron\CronJobInterface;
+use LoxBerryPlugin\Core\Cron\CronJobRunner;
+use LoxBerryPlugin\Core\Cron\CronLoggerFactory;
 
 /**
  * Class DummyCronJob.

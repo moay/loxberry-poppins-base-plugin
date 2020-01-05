@@ -8,7 +8,7 @@ services:
       $cronLogger: '@logger_cron'
 
   _instanceof:
-    LoxBerryPlugin\Cron\CronJobInterface:
+    LoxBerryPlugin\Core\Cron\CronJobInterface:
       tags: ['plugin.cron_job']
 
   LoxBerryPlugin\:
@@ -17,14 +17,17 @@ services:
   LoxBerry\:
     resource: '../vendor/moay/loxberry-core/src/*'
 
-  LoxBerryPlugin\Cron\CronJobRunner:
+  LoxBerryPlugin\Core\Cron\CronJobRunner:
     public: true
     arguments:
       $cronJobs: !tagged plugin.cron_job
+
+  LoxBerryPlugin\Core\Routing\PageRouter:
+    public: true
 
   LoxBerry\Logging\Database\LogFileDatabase:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
 
   logger_cron:
     class: 'LoxBerry\Logging\Logger'
-    factory: '@LoxBerryPlugin\Cron\CronLoggerFactory'
+    factory: '@LoxBerryPlugin\Core\Cron\CronLoggerFactory'

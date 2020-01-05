@@ -1,9 +1,8 @@
 <?php
 
-namespace LoxBerryPlugin\Cron;
+namespace LoxBerryPlugin\Core\Cron;
 
 use LoxBerry\Logging\LoggerFactory;
-use LoxBerry\System\PathProvider;
 use LoxBerry\System\Paths;
 use LoxBerry\System\Plugin\PluginPathProvider;
 
@@ -25,7 +24,8 @@ class CronLoggerFactory
 
     /**
      * CronLoggerFactory constructor.
-     * @param LoggerFactory $loggerFactory
+     *
+     * @param LoggerFactory      $loggerFactory
      * @param PluginPathProvider $pathProvider
      * @param $packageName
      */
@@ -51,6 +51,6 @@ class CronLoggerFactory
             self::LOG_NAME,
             $this->packageName,
             $logFileDirectory.'/cron.log'
-            );
+        );
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use LoxBerryPlugin\Cron\CronJobRunner;
-use LoxBerryPlugin\PluginKernel;
+use LoxBerryPlugin\Core\Cron\CronJobRunner;
+use LoxBerryPlugin\Core\PluginKernel;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
