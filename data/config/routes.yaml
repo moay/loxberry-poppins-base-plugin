@@ -8,5 +8,8 @@ admin:
     controller: 'LoxBerryPlugin\Controller\DummyController'
     method: 'testPage'
 
-public:
-
+#public:
+#  default:
+#    route: '/'
+#    controller: 'LoxBerryPlugin\Controller\MyPublicController'
+#    method: 'index'
