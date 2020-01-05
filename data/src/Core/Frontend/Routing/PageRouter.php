@@ -58,12 +58,10 @@ class PageRouter
      */
     private function getMatchedRoute(string $route, bool $isPublic): ?PageRouteConfiguration
     {
-        $routes = $isPublic ?
-            ($this->routes['admin'] ?? []) :
-            ($this->routes['public'] ?? []);
+        $routes = $this->routes[$isPublic ? 'admin' : 'public'] ?? [];
 
         foreach ($routes as $configuredRoute) {
-            if (ltrim($configuredRoute['route'], '/') === $route) {
+            if (trim($configuredRoute['route'], '/') === trim($route, '/')) {
                 $configuration = new PageRouteConfiguration();
                 $configuration->setControllerClassName($configuredRoute['controller']);
                 $configuration->setMethod($configuredRoute['method']);
