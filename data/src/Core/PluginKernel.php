@@ -63,8 +63,8 @@ class PluginKernel
     private function setupErrorHandler()
     {
         $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
-        if (file_exists(__DIR__.'../../config/plugin.cfg')) {
-            $configuration = new ConfigurationParser(__DIR__ . '/plugin.cfg');
+        if (file_exists(__DIR__.'/../../config/plugin.cfg')) {
+            $configuration = new ConfigurationParser(__DIR__.'/../../config/plugin.cfg');
             $pluginName = $configuration->get('PLUGIN', 'NAME');
             $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
         }
