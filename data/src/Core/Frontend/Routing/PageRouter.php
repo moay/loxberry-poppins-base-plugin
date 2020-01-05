@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 class PageRouter
 {
-    const ROUTING_CONFIGURATION = __DIR__.'/../../config/routes.yaml';
+    const ROUTING_CONFIGURATION = __DIR__.'/../../../../config/routes.yaml';
 
     /** @var ControllerExecutor */
     private $controllerExecutor;

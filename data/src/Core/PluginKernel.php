@@ -21,6 +21,7 @@ class PluginKernel
 {
     const CONFIG_DIRECTORY = __DIR__.'/../../config';
     const DEFAULT_PLUGIN_CONFIGURATION = 'pluginConfiguration.php';
+    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__.'/../../config/plugin.cfg';
     const DEFAULT_SERVICES_CONFIGURATION = 'services.yaml';
 
     /** @var ContainerBuilder */
@@ -63,8 +64,8 @@ class PluginKernel
     private function setupErrorHandler()
     {
         $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
-        if (file_exists(__DIR__.'/../../config/plugin.cfg')) {
-            $configuration = new ConfigurationParser(__DIR__.'/../../config/plugin.cfg');
+        if (file_exists(self::ORIGINAL_PLUGIN_CONFIGURATION)) {
+            $configuration = new ConfigurationParser(self::ORIGINAL_PLUGIN_CONFIGURATION);
             $pluginName = $configuration->get('PLUGIN', 'NAME');
             $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
         }
