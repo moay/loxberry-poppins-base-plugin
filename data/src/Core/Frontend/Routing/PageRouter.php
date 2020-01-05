@@ -13,22 +13,17 @@ class PageRouter
 {
     const ROUTING_CONFIGURATION = __DIR__.'../../config/routes.yaml';
 
-    /** @var RequestStack */
-    private $requestStack;
-
     /** @var ControllerExecutor */
     private $controllerExecutor;
 
     /**
      * PageRouter constructor.
      *
-     * @param RequestStack       $requestStack
      * @param ControllerExecutor $controllerExecutor
      */
-    public function __construct(RequestStack $requestStack, ControllerExecutor $controllerExecutor)
+    public function __construct(ControllerExecutor $controllerExecutor)
     {
         $this->routes = Yaml::parseFile(self::ROUTING_CONFIGURATION);
-        $this->requestStack = $requestStack;
         $this->controllerExecutor = $controllerExecutor;
     }
 
