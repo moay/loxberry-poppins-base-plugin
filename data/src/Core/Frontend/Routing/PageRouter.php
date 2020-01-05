@@ -2,7 +2,7 @@
 
 namespace LoxBerryPlugin\Core\Frontend\Routing;
 
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Yaml\Yaml;
 
@@ -50,7 +50,7 @@ class PageRouter
             $pageConfiguration->getControllerClassName(),
             $pageConfiguration->getMethod()
         );
-        $response->prepare($this->requestStack->getCurrentRequest());
+        $response->prepare(Request::createFromGlobals());
 
         return $response->send();
     }

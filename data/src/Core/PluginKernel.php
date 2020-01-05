@@ -2,6 +2,7 @@
 
 namespace LoxBerryPlugin\Core;
 
+use LoxBerry\ConfigurationParser\ConfigurationParser;
 use LoxBerry\Logging\Logger;
 use LoxBerry\System\LowLevelExecutor;
 use LoxBerry\System\PathProvider;
@@ -37,6 +38,7 @@ class PluginKernel
 
     private function loadContainer()
     {
+        $this->setupErrorHandler();
         $containerBuilder = new ContainerBuilder();
 
         $yamlLoader = new YamlFileLoader($containerBuilder, new FileLocator(self::CONFIG_DIRECTORY));
@@ -48,7 +50,6 @@ class PluginKernel
         $containerBuilder->compile();
 
         $this->container = $containerBuilder;
-        $this->setupErrorHandler();
     }
 
     /**
@@ -62,10 +63,14 @@ class PluginKernel
     private function setupErrorHandler()
     {
         $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
-        $pluginName = $this->container->getParameter('plugin.name');
-        $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
+        if (file_exists(__DIR__.'/plugin.cfg')) {
+            $configuration = new ConfigurationParser(__DIR__ . '/plugin.cfg');
+            $pluginName = $configuration->get('PLUGIN', 'NAME');
+            $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
+        }
         if (Logger::LOGLEVEL_DEBUG === $logLevel) {
             error_reporting(E_ALL);
+            ini_set('display_errors', 'On');
             $slashtrace = new SlashTrace();
             $slashtrace->addHandler(new DebugHandler());
             $slashtrace->register();

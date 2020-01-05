@@ -3,7 +3,7 @@
 namespace LoxBerryPlugin\Core\Frontend\Routing;
 
 use LoxBerryPlugin\Core\Frontend\AbstractController;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -14,15 +14,12 @@ class ControllerExecutor
     /** @var AbstractController[] */
     private $controllers = [];
 
-    /** @var RequestStack */
-    private $requestStack;
-
     /**
      * ControllerExecutor controller.
      *
      * @param iterable $controllers
      */
-    public function __construct(iterable $controllers, RequestStack $requestStack)
+    public function __construct(iterable $controllers)
     {
         foreach ($controllers as $controller) {
             if (!$controller instanceof AbstractController) {
@@ -30,7 +27,6 @@ class ControllerExecutor
             }
             $this->controllers[] = $controller;
         }
-        $this->requestStack = $requestStack;
     }
 
     /**
@@ -47,7 +43,7 @@ class ControllerExecutor
                     throw new \RuntimeException(sprintf('Method %s does not exist on controller %s', $methodName, $controllerClassName));
                 }
 
-                $controller->setRequest($this->requestStack->getCurrentRequest());
+                $controller->setRequest(Request::createFromGlobals());
                 $response = $controller->{$methodName}();
                 if (!$response instanceof Response) {
                     throw new \RuntimeException('Your controller must return an object of type Response.');
