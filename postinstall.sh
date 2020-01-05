@@ -1,11 +1,11 @@
 #!/bin/bash
 
 PDIR=$3
-PTEMPL=$LBPTEMPL/$PDIR
+PHTML=$LBPHTML/$PDIR
 
 echo "<INFO> Copying .htaccess files to target location"
-cp ./webfrontend/html/.htaccess $PTEMPL/html/.htaccess
-cp ./webfrontend/htmlauth/.htaccess $PTEMPL/htmlauth/.htaccess
+cp ./webfrontend/html/.htaccess $PHTML/html/.htaccess
+cp ./webfrontend/htmlauth/.htaccess $PHTML/htmlauth/.htaccess
 
 echo "<OK> Done copying .htaccess files"
 
