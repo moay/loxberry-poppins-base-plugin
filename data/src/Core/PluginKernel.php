@@ -2,6 +2,12 @@
 
 namespace LoxBerryPlugin\Core;
 
+use LoxBerry\Logging\Logger;
+use LoxBerry\System\LowLevelExecutor;
+use LoxBerry\System\PathProvider;
+use LoxBerry\System\Plugin\PluginDatabase;
+use SlashTrace\EventHandler\DebugHandler;
+use SlashTrace\SlashTrace;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -42,6 +48,7 @@ class PluginKernel
         $containerBuilder->compile();
 
         $this->container = $containerBuilder;
+        $this->setupErrorHandler();
     }
 
     /**
@@ -50,5 +57,18 @@ class PluginKernel
     public function getContainer(): ContainerBuilder
     {
         return $this->container;
+    }
+
+    private function setupErrorHandler()
+    {
+        $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
+        $pluginName = $this->container->getParameter('plugin.name');
+        $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
+        if (Logger::LOGLEVEL_DEBUG === $logLevel) {
+            error_reporting(E_ALL);
+            $slashtrace = new SlashTrace();
+            $slashtrace->addHandler(new DebugHandler());
+            $slashtrace->register();
+        }
     }
 }

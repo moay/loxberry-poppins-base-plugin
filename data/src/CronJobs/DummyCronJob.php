@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin\Cron\CronJobs;
+namespace LoxBerryPlugin\CronJobs;
 
 use LoxBerry\Logging\Logger;
 use LoxBerryPlugin\Core\Cron\CronJobInterface;
