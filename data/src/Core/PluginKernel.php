@@ -34,12 +34,12 @@ class PluginKernel
      */
     public function __construct()
     {
+        $this->setupErrorHandler();
         $this->loadContainer();
     }
 
     private function loadContainer()
     {
-        $this->setupErrorHandler();
         $containerBuilder = new ContainerBuilder();
 
         $yamlLoader = new YamlFileLoader($containerBuilder, new FileLocator(self::CONFIG_DIRECTORY));
