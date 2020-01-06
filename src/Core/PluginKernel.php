@@ -21,7 +21,7 @@ class PluginKernel
 {
     const CONFIG_DIRECTORY = __DIR__.'/../../config';
     const DEFAULT_PLUGIN_CONFIGURATION = 'pluginConfiguration.php';
-    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__.'/../../config/plugin.cfg';
+    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__ . '/../../config/plugin.cfg';
     const DEFAULT_SERVICES_CONFIGURATION = 'services.yaml';
 
     /** @var ContainerBuilder */

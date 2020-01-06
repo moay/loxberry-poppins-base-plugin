@@ -1,12 +1,12 @@
 #!/bin/bash
 
+echo "<INFO> Copying plugin configuration into installation"
+cp ./plugin.cfg ./config/plugin.cfg
+echo "<OK> Done copying plugin configuration"
+
 echo "<INFO> Preparing vendor libraries"
 php composer.phar install --no-interaction --no-dev --no-progress
 echo "<OK> Done installing vendor libraries"
-
-echo "<INFO> Copying plugin configuration into installation"
-cp ./config/plugin.cfg ./plugin.cfg
-echo "<OK> Done copying plugin configuration"
 
 echo "<INFO> Moving all code folders to data"
 cp ./config/plugin.cfg ./plugin.cfg
