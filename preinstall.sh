@@ -15,7 +15,7 @@ find . -type d -maxdepth 1 ! -name "data" ! -name "resources" ! -name . -print -
 
 echo "<INFO> Moving all resource folders and files to plugin root"
 find ./resources/* -maxdepth 0 ! -name . ! -name .. -print -exec mv {} ./ \;
-rm -f ./resources
+rm -rf ./resources
 
 echo "<OK> Done moving files and folders."
 echo "<INFO> Ready for installation."
