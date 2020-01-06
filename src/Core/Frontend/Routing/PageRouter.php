@@ -9,7 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Class PageRouter.
  */
-class PageRouter
+class PageRouter implements PageRouterInterface
 {
     const ROUTING_CONFIGURATION = __DIR__.'/../../../../config/routes.yaml';
 

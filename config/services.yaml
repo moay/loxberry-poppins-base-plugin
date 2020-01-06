@@ -24,7 +24,8 @@ services:
     arguments:
       $cronJobs: !tagged plugin.cron_job
 
-  LoxBerryPlugin\Core\Frontend\Routing\PageRouter:
+  LoxBerryPlugin\Core\Frontend\Routing\PageRouterInterface:
+    class: LoxBerryPlugin\Core\Frontend\Routing\PageRouter
     public: true
 
   LoxBerryPlugin\Core\Frontend\Routing\ControllerExecutor:
