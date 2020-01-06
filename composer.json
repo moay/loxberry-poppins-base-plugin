@@ -16,7 +16,6 @@
     "require-dev": {
         "phpunit/phpunit": "^8.3",
         "php-coveralls/php-coveralls": "^2.1",
-        "phpro/grumphp": "^0.17",
         "friendsofphp/php-cs-fixer": "^2"
     },
     "license": "MIT",
@@ -28,11 +27,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "LoxBerryPlugin\\": "data/src/",
+            "LoxBerryPlugin\\": "src/",
             "Tests\\": "tests/"
         }
-    },
-    "config": {
-        "vendor-dir": "./data/vendor"
     }
 }

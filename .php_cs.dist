@@ -29,7 +29,7 @@
       ->setFinder(
           PhpCsFixer\Finder::create()
           ->in([
-            __DIR__.'/data/src',
+            __DIR__.'/src',
             __DIR__.'/tests',
           ])
         ->append([
