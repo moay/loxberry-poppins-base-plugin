@@ -17,9 +17,9 @@ class TwigEnvironmentFactory
                 throw new \RuntimeException('Cache folder could not be created.');
             }
         }
-        $loader = new \Twig\Loader\FilesystemLoader($rootPath.'/'.trim('/', self::TWIG_VIEWS_FOLDER));
+        $loader = new \Twig\Loader\FilesystemLoader($rootPath.'/'.trim(self::TWIG_VIEWS_FOLDER, '/'));
         $twig = new \Twig\Environment($loader, [
-            'cache' => $rootPath.'/'.trim('/', self::TWIG_CACHE_FOLDER),
+            'cache' => $rootPath.'/'.trim(self::TWIG_CACHE_FOLDER, '/'),
         ]);
 
         return $twig;
