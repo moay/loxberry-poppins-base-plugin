@@ -15,5 +15,6 @@ return function(ContainerConfigurator $configurator) {
         ->set('plugin.version', $configuration->get('PLUGIN', 'VERSION'))
         ->set('plugin.directory', $configuration->get('PLUGIN', 'FOLDER'))
         ->set('plugin.title', $configuration->get('PLUGIN', 'TITLE'))
+        ->set('runtime.root_dir', realpath(dirname(__DIR__)))
     ;
 };

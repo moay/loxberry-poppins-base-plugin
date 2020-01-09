@@ -35,6 +35,10 @@ services:
   LoxBerry\Logging\Database\LogFileDatabase:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
 
+  \Twig\Environment:
+    factory: ['LoxBerryPlugin\Core\Frontend\Rendering\TwigEnvironmentFactory', 'createEnvironment']
+    arguments: ['%runtime.root_dir%']
+
   logger_cron:
     class: 'LoxBerry\Logging\Logger'
     factory: '@LoxBerryPlugin\Core\Cron\CronLoggerFactory'

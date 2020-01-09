@@ -14,6 +14,9 @@ class PageRouteConfiguration
     private $method;
 
     /** @var string */
+    private $action;
+
+    /** @var string */
     private $route;
 
     /**
@@ -46,6 +49,22 @@ class PageRouteConfiguration
     public function setMethod(string $method): void
     {
         $this->method = $method;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param string $action
+     */
+    public function setAction(string $action): void
+    {
+        $this->action = $action;
     }
 
     /**

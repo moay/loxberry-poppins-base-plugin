@@ -2,14 +2,16 @@ admin:
   default:
     route: '/'
     controller: 'LoxBerryPlugin\Controller\DummyController'
-    method: 'testPage'
+    method: 'GET'
+    action: 'testPage'
   test:
     route: '/test'
     controller: 'LoxBerryPlugin\Controller\DummyController'
-    method: 'testPage'
+    method: 'GET,POST'
+    action: 'testPage'
 
 #public:
 #  default:
 #    route: '/'
 #    controller: 'LoxBerryPlugin\Controller\MyPublicController'
-#    method: 'index'
+#    method: 'GET,POST'

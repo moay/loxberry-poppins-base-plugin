@@ -72,9 +72,9 @@ class PluginKernel
         if (isset($logLevel) && Logger::LOGLEVEL_DEBUG === $logLevel) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
-            $slashtrace = new SlashTrace();
-            $slashtrace->addHandler(new DebugHandler());
-            $slashtrace->register();
+            $slashTrace = new SlashTrace();
+            $slashTrace->addHandler(new DebugHandler());
+            $slashTrace->register();
         }
     }
 }

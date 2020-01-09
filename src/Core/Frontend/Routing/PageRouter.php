@@ -2,9 +2,11 @@
 
 namespace LoxBerryPlugin\Core\Frontend\Routing;
 
+use LoxBerryPlugin\Core\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Yaml\Yaml;
+use Twig\Environment;
 
 /**
  * Class PageRouter.
@@ -16,15 +18,20 @@ class PageRouter implements PageRouterInterface
     /** @var ControllerExecutor */
     private $controllerExecutor;
 
+    /** @var Environment */
+    private $twig;
+
     /**
      * PageRouter constructor.
      *
      * @param ControllerExecutor $controllerExecutor
+     * @param Environment $twig
      */
-    public function __construct(ControllerExecutor $controllerExecutor)
+    public function __construct(ControllerExecutor $controllerExecutor, Environment $twig)
     {
         $this->routes = Yaml::parseFile(self::ROUTING_CONFIGURATION);
         $this->controllerExecutor = $controllerExecutor;
+        $this->twig = $twig;
     }
 
     /**
@@ -35,17 +42,18 @@ class PageRouter implements PageRouterInterface
      */
     public function process(string $route, bool $isPublic = false): Response
     {
-        $pageConfiguration = $this->getMatchedRoute($route, $isPublic);
-
-        if (null === $pageConfiguration) {
-            die('500');
+        try {
+            $pageConfiguration = $this->getMatchedRoute($route, $isPublic);
+            $response = $this->controllerExecutor->getResponse(
+                $pageConfiguration->getControllerClassName(),
+                $pageConfiguration->getAction()
+            );
+            $response->prepare(Request::createFromGlobals());
+        } catch (RouteNotFoundException $exception) {
+            $response = new Response($this->twig->render('error/routeNotFound.html.twig', [
+                'exception' => $exception
+            ]), Response::HTTP_NOT_FOUND);
         }
-
-        $response = $this->controllerExecutor->getResponse(
-            $pageConfiguration->getControllerClassName(),
-            $pageConfiguration->getMethod()
-        );
-        $response->prepare(Request::createFromGlobals());
 
         return $response->send();
     }
@@ -54,23 +62,32 @@ class PageRouter implements PageRouterInterface
      * @param string $route
      * @param bool   $isPublic
      *
-     * @return PageRouteConfiguration|null
+     * @return PageRouteConfiguration
      */
-    private function getMatchedRoute(string $route, bool $isPublic): ?PageRouteConfiguration
+    private function getMatchedRoute(string $route, bool $isPublic): PageRouteConfiguration
     {
         $routes = $this->routes[!$isPublic ? 'admin' : 'public'] ?? [];
+        $request = Request::createFromGlobals();
+
 
         foreach ($routes as $configuredRoute) {
-            if (trim($configuredRoute['route'], '/') === trim($route, '/')) {
+            $allowedMethods = explode(',', $configuredRoute['method'] ?? Request::METHOD_GET);
+            $requestMethod = strtolower($request->getMethod());
+
+            if (
+                trim($configuredRoute['route'], '/') === trim($route, '/') &&
+                in_array($requestMethod, array_map('trim', array_map('strtolower', $allowedMethods)))
+            ) {
                 $configuration = new PageRouteConfiguration();
                 $configuration->setControllerClassName($configuredRoute['controller']);
-                $configuration->setMethod($configuredRoute['method']);
+                $configuration->setMethod($request->getMethod());
+                $configuration->setAction($configuredRoute['action']);
                 $configuration->setRoute($configuredRoute['route']);
 
                 return $configuration;
             }
         }
 
-        return null;
+        throw new RouteNotFoundException('No route configuration matches this request.');
     }
 }
