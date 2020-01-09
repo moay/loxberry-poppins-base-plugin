@@ -12,6 +12,6 @@ class DummyController extends AbstractController
 {
     public function testPage()
     {
-        return new Response('Test');
+        return $this->render('admin/test.html.twig');
     }
 }

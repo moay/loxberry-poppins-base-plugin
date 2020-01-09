@@ -7,8 +7,6 @@ use LoxBerry\Logging\Logger;
 use LoxBerry\System\LowLevelExecutor;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Plugin\PluginDatabase;
-use SlashTrace\EventHandler\DebugHandler;
-use SlashTrace\SlashTrace;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -72,9 +70,9 @@ class PluginKernel
         if (isset($logLevel) && Logger::LOGLEVEL_DEBUG === $logLevel) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
-            $slashTrace = new SlashTrace();
-            $slashTrace->addHandler(new DebugHandler());
-            $slashTrace->register();
+            $whoops = new \Whoops\Run;
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->register();
         }
     }
 }

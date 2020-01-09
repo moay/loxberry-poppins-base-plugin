@@ -11,7 +11,7 @@ services:
     LoxBerryPlugin\Core\Cron\CronJobInterface:
       tags: ['plugin.cron_job']
     LoxBerryPlugin\Core\Frontend\AbstractController:
-      tags: ['plugin.controller']
+      tags: ['plugin.controller', 'controller.service_arguments']
 
   LoxBerryPlugin\:
     resource: '../src/*'
