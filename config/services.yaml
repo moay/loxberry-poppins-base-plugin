@@ -38,7 +38,7 @@ services:
 
   Twig\Environment:
     class: 'Twig\Environment'
-    factory: '@LoxBerryPlugin\Core\Frontend\Rendering\TwigEnvironmentFactory'
+    factory: '@LoxBerryPlugin\Core\Frontend\Twig\TwigEnvironmentFactory'
 
   logger_cron:
     class: 'LoxBerry\Logging\Logger'
