@@ -25,7 +25,7 @@ class PageRouter implements PageRouterInterface
      * PageRouter constructor.
      *
      * @param ControllerExecutor $controllerExecutor
-     * @param Environment $twig
+     * @param Environment        $twig
      */
     public function __construct(ControllerExecutor $controllerExecutor, Environment $twig)
     {
@@ -51,7 +51,7 @@ class PageRouter implements PageRouterInterface
             $response->prepare(Request::createFromGlobals());
         } catch (RouteNotFoundException $exception) {
             $response = new Response($this->twig->render('error/routeNotFound.html.twig', [
-                'exception' => $exception
+                'exception' => $exception,
             ]), Response::HTTP_NOT_FOUND);
         }
 
@@ -68,7 +68,6 @@ class PageRouter implements PageRouterInterface
     {
         $routes = $this->routes[!$isPublic ? 'admin' : 'public'] ?? [];
         $request = Request::createFromGlobals();
-
 
         foreach ($routes as $configuredRoute) {
             $allowedMethods = explode(',', $configuredRoute['method'] ?? Request::METHOD_GET);

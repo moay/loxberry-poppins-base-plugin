@@ -6,6 +6,7 @@ services:
     bind:
       $packageName: '%plugin.name%'
       $cronLogger: '@logger_cron'
+      $rootPath: '%runtime.root_dir%'
 
   _instanceof:
     LoxBerryPlugin\Core\Cron\CronJobInterface:
@@ -37,8 +38,7 @@ services:
 
   Twig\Environment:
     class: 'Twig\Environment'
-    factory: ['LoxBerryPlugin\Core\Frontend\Rendering\TwigEnvironmentFactory', 'createEnvironment']
-    arguments: ['%runtime.root_dir%']
+    factory: '@LoxBerryPlugin\Core\Frontend\Rendering\TwigEnvironmentFactory'
 
   logger_cron:
     class: 'LoxBerry\Logging\Logger'

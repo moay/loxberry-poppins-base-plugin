@@ -19,7 +19,7 @@ class PluginKernel
 {
     const CONFIG_DIRECTORY = __DIR__.'/../../config';
     const DEFAULT_PLUGIN_CONFIGURATION = 'pluginConfiguration.php';
-    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__ . '/../../config/plugin.cfg';
+    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__.'/../../config/plugin.cfg';
     const DEFAULT_SERVICES_CONFIGURATION = 'services.yaml';
 
     /** @var ContainerBuilder */
@@ -70,8 +70,8 @@ class PluginKernel
         if (isset($logLevel) && Logger::LOGLEVEL_DEBUG === $logLevel) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
-            $whoops = new \Whoops\Run;
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops = new \Whoops\Run();
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
             $whoops->register();
         }
     }

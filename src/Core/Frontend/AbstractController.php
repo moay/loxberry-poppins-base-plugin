@@ -45,7 +45,7 @@ abstract class AbstractController
     }
 
     /**
-     * @param string $view
+     * @param string     $view
      * @param array|null $parameters
      *
      * @return Response
