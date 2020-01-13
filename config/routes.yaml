@@ -1,11 +1,11 @@
 admin:
-  default:
+  home:
     route: '/'
     controller: 'LoxBerryPlugin\Controller\DummyController'
     method: 'GET'
     action: 'testPage'
-  test:
-    route: '/test'
+  log:
+    route: '/logs'
     controller: 'LoxBerryPlugin\Controller\DummyController'
     method: 'GET,POST'
     action: 'testPage'

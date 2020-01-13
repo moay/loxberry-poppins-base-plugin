@@ -2,13 +2,12 @@
 
 namespace LoxBerryPlugin\Core\Frontend\Twig;
 
-use http\Env;
 use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\Logging\Logger;
-use LoxBerry\System\PathProvider;
 use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
-use LoxBerryPlugin\Core\Frontend\Twig\Globals\LoxBerryTemplating;
+use LoxBerryPlugin\Core\Frontend\Twig\Extensions\LoxBerryTemplating;
+use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 use Twig\Extension\SandboxExtension;
 use Twig\Sandbox\SecurityPolicy;
@@ -41,7 +40,6 @@ class TwigEnvironmentFactory
      * @param PluginDatabase $pluginDatabase
      * @param MiniserverInformation $miniserverInformation
      * @param LoxBerryTemplating $loxBerryTemplating
-     * @param PathProvider $pathProvider
      */
     public function __construct(
         string $rootPath,
@@ -100,5 +98,6 @@ class TwigEnvironmentFactory
     {
         $twig->addGlobal('plugin', $this->pluginInformation);
         $twig->addGlobal('miniserver', $this->miniserverInformation);
+        $twig->addGlobal('request', Request::createFromGlobals());
     }
 }
