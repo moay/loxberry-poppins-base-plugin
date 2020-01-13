@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "693093b0a7ed26f63741ecaa970611ba",
+    "content-hash": "d155a74f19c8fd89de7af62bff3384e1",
     "packages": [
         {
             "name": "alar/template",
-            "version": "dev-master",
+            "version": "3.0",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/giovanni_gargani/alartemplate.git",
-                "reference": "ec9c7711cb8c48917a7b7bc1364d7d9b22a2d3cf"
+                "reference": "ede6f78a5916f1f45c9404edc5ea8a293265f129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/giovanni_gargani/alartemplate/get/ec9c7711cb8c48917a7b7bc1364d7d9b22a2d3cf.zip",
-                "reference": "ec9c7711cb8c48917a7b7bc1364d7d9b22a2d3cf",
+                "url": "https://bitbucket.org/giovanni_gargani/alartemplate/get/ede6f78a5916f1f45c9404edc5ea8a293265f129.zip",
+                "reference": "ede6f78a5916f1f45c9404edc5ea8a293265f129",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
             ],
             "description": "A template engine compatible with perl::template",
             "homepage": "https://bitbucket.org/giovanni_gargani/alartemplate",
-            "time": "2018-02-02T22:32:09+00:00"
+            "time": "2017-05-23T21:47:04+00:00"
         },
         {
             "name": "catfan/medoo",
@@ -4048,8 +4048,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "pear/config_lite": 20,
-        "moay/loxberry-core": 10,
-        "alar/template": 20
+        "moay/loxberry-core": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
