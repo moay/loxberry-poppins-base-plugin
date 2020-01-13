@@ -34,7 +34,7 @@ class LoxBerryTemplating extends AbstractExtension
             ),
         );
     }
-    
+
     public function printHead(): string
     {
         $template = new Template([

@@ -5,6 +5,7 @@ namespace LoxBerryPlugin\Core\Frontend\Twig;
 use http\Env;
 use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\Logging\Logger;
+use LoxBerry\System\PathProvider;
 use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
 use LoxBerryPlugin\Core\Frontend\Twig\Globals\LoxBerryTemplating;
@@ -32,26 +33,32 @@ class TwigEnvironmentFactory
     /** @var LoxBerryTemplating */
     private $loxBerryTemplating;
 
+    /** @var PathProvider */
+    private $pathProvider;
+
     /**
      * TwigEnvironmentFactory constructor.
      *
      * @param string $rootPath
      * @param $packageName
-     * @param PluginDatabase        $pluginDatabase
+     * @param PluginDatabase $pluginDatabase
      * @param MiniserverInformation $miniserverInformation
-     * @param LoxBerryTemplating    $loxBerryTemplating
+     * @param LoxBerryTemplating $loxBerryTemplating
+     * @param PathProvider $pathProvider
      */
     public function __construct(
         string $rootPath,
         $packageName,
         PluginDatabase $pluginDatabase,
         MiniserverInformation $miniserverInformation,
-        LoxBerryTemplating $loxBerryTemplating
+        LoxBerryTemplating $loxBerryTemplating,
+        PathProvider $pathProvider
     ) {
         $this->rootPath = $rootPath;
         $this->pluginInformation = $pluginDatabase->getPluginInformation($packageName);
         $this->miniserverInformation = $miniserverInformation;
         $this->loxBerryTemplating = $loxBerryTemplating;
+        $this->pathProvider = $pathProvider;
     }
 
     /**
@@ -88,7 +95,7 @@ class TwigEnvironmentFactory
         $sandboxPolicy = new SecurityPolicy();
         $twig->addExtension(new SandboxExtension($sandboxPolicy));
 
-        $twig->addExtension(new LoxBerryTemplating());
+        $twig->addExtension(new LoxBerryTemplating($this->pathProvider));
     }
 
     /**
