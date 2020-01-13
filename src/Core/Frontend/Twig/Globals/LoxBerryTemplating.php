@@ -15,7 +15,7 @@ class LoxBerryTemplating extends AbstractExtension
         return array(
             new TwigFunction('loxBerryHead',
                 [$this, 'printHead'],
-                ['is_safe' => 'html']
+                ['is_safe' => ['html']]
             ),
         );
     }
