@@ -6,6 +6,7 @@ echo "<OK> Done copying plugin configuration"
 
 echo "<INFO> Preparing vendor libraries"
 php composer.phar install --no-interaction --no-dev --no-progress
+php composer.phar dump-autoload
 echo "<OK> Done installing vendor libraries"
 
 echo "<INFO> Moving all code folders to data"
