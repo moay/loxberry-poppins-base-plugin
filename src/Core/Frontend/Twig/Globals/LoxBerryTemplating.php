@@ -3,6 +3,8 @@
 namespace LoxBerryPlugin\Core\Frontend\Twig\Globals;
 
 use Alar\Template\Template;
+use LoxBerry\ConfigurationParser\SystemConfigurationParser;
+use LoxBerry\System\Localization\LanguageDeterminator;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Paths;
 use Twig\Extension\AbstractExtension;
@@ -19,14 +21,28 @@ class LoxBerryTemplating extends AbstractExtension
     /** @var string */
     private $templateDirectory;
 
+    /** @var SystemConfigurationParser */
+    private $systemConfigurationParser;
+
+    /** @var LanguageDeterminator */
+    private $languageDeterminator;
+
     /**
      * LoxBerryTemplating constructor.
+     *
      * @param PathProvider $pathProvider
+     * @param SystemConfigurationParser $systemConfigurationParser
+     * @param LanguageDeterminator $languageDeterminator
      */
-    public function __construct(PathProvider $pathProvider)
-    {
+    public function __construct(
+        PathProvider $pathProvider,
+        SystemConfigurationParser $systemConfigurationParser,
+        LanguageDeterminator $languageDeterminator
+    ) {
         $this->pathProvider = $pathProvider;
         $this->templateDirectory = rtrim($this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE), '/');
+        $this->systemConfigurationParser = $systemConfigurationParser;
+        $this->languageDeterminator = $languageDeterminator;
     }
 
     /**
@@ -57,14 +73,18 @@ class LoxBerryTemplating extends AbstractExtension
     /**
      * @return string
      */
-    public function htmlHead(): string
+    public function htmlHead(?string $pageTitle = null, ?string $htmlHead = ''): string
     {
-        $templateFile = $this->templateDirectory.'/head.html';
+        $templateFile = $this->templateDirectory . '/head.html';
+        $pageTitle = $pageTitle !== null ?
+            $pageTitle . ' ' . $this->systemConfigurationParser->getNetworkName() :
+            $this->systemConfigurationParser->getNetworkName();
+
 
         return $this->readTemplate($templateFile, [
-            'TEMPLATETITLE' => 'Test',
-            'LANG' => 'de',
-            'HTMLHEAD' => '',
+            'TEMPLATETITLE' => $pageTitle,
+            'LANG' => $this->languageDeterminator->getLanguage(),
+            'HTMLHEAD' => $htmlHead,
         ]);
     }
 
@@ -73,7 +93,7 @@ class LoxBerryTemplating extends AbstractExtension
      */
     public function htmlFoot(): string
     {
-        $templateFile = $this->templateDirectory.'/foot.html';
+        $templateFile = $this->templateDirectory . '/foot.html';
 
         return $this->readTemplate($templateFile, [
             'LANG' => 'de',
@@ -82,7 +102,7 @@ class LoxBerryTemplating extends AbstractExtension
 
     public function pageStart(bool $hidePanels = true): string
     {
-        $templateFile = $this->templateDirectory.($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
+        $templateFile = $this->templateDirectory . ($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
 
         return $this->readTemplate($templateFile, [
             'TEMPLATETITLE' => 'Test',
@@ -94,7 +114,7 @@ class LoxBerryTemplating extends AbstractExtension
 
     public function pageEnd(): string
     {
-        $templateFile = $this->templateDirectory.'/pageend.html';
+        $templateFile = $this->templateDirectory . '/pageend.html';
 
         return $this->readTemplate($templateFile, [
             'LANG' => 'de',
@@ -115,7 +135,7 @@ class LoxBerryTemplating extends AbstractExtension
 
         $content = file_get_contents($fileName);
         foreach ($variables as $key => $value) {
-            $content = str_replace('<TMPL_VAR '.$key.'>', $value, $content);
+            $content = str_replace('<TMPL_VAR ' . $key . '>', $value, $content);
         }
 
         return $content;

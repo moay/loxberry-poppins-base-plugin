@@ -1,4 +1,4 @@
-{{ loxBerryHtmlHead() }}
+{{ loxBerryHtmlHead(pageTitle|default(plugin.name), block('htmlHead')) }}
 {{ loxBerryPageStart() }}
 
 <h2>{{ plugin.name }}</h2>
