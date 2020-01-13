@@ -1,7 +1,10 @@
-{{ loxBerryHead() }}
+{{ loxBerryHtmlStart() }}
 {{ loxBerryPageStart() }}
 
 <h2>{{ plugin.name }}</h2>
 <h3>{{ plugin.version }}</h3>
 
 {% block body %}{% endblock %}
+
+{{ loxBerryPageEnd() }}
+{{ loxBerryHtmlFoot() }}

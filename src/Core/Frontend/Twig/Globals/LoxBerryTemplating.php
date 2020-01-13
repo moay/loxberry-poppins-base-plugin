@@ -35,12 +35,20 @@ class LoxBerryTemplating extends AbstractExtension
     public function getFunctions(): array
     {
         return array(
-            new TwigFunction('loxBerryHead',
+            new TwigFunction('loxBerryHtmlHead',
                 [$this, 'htmlHead'],
+                ['is_safe' => ['html']]
+            ),
+            new TwigFunction('loxBerryHtmlFoot',
+                [$this, 'htmlFoot'],
                 ['is_safe' => ['html']]
             ),
             new TwigFunction('loxBerryPageStart',
                 [$this, 'pageStart'],
+                ['is_safe' => ['html']]
+            ),
+            new TwigFunction('loxBerryPageEnd',
+                [$this, 'pageEnd'],
                 ['is_safe' => ['html']]
             ),
         );
@@ -60,6 +68,18 @@ class LoxBerryTemplating extends AbstractExtension
         ]);
     }
 
+    /**
+     * @return string
+     */
+    public function htmlFoot(): string
+    {
+        $templateFile = $this->templateDirectory.'/foot.html';
+
+        return $this->readTemplate($templateFile, [
+            'LANG' => 'de',
+        ]);
+    }
+
     public function pageStart(bool $hidePanels = true): string
     {
         $templateFile = $this->templateDirectory.($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
@@ -68,6 +88,15 @@ class LoxBerryTemplating extends AbstractExtension
             'TEMPLATETITLE' => 'Test',
             'HELPLINK' => 'https://google.com',
             'PAGE' => 'test',
+            'LANG' => 'de',
+        ]);
+    }
+
+    public function pageEnd(): string
+    {
+        $templateFile = $this->templateDirectory.'/pageend.html';
+
+        return $this->readTemplate($templateFile, [
             'LANG' => 'de',
         ]);
     }
