@@ -33,9 +33,6 @@ class TwigEnvironmentFactory
     /** @var LoxBerryTemplating */
     private $loxBerryTemplating;
 
-    /** @var PathProvider */
-    private $pathProvider;
-
     /**
      * TwigEnvironmentFactory constructor.
      *
@@ -51,14 +48,12 @@ class TwigEnvironmentFactory
         $packageName,
         PluginDatabase $pluginDatabase,
         MiniserverInformation $miniserverInformation,
-        LoxBerryTemplating $loxBerryTemplating,
-        PathProvider $pathProvider
+        LoxBerryTemplating $loxBerryTemplating
     ) {
         $this->rootPath = $rootPath;
         $this->pluginInformation = $pluginDatabase->getPluginInformation($packageName);
         $this->miniserverInformation = $miniserverInformation;
         $this->loxBerryTemplating = $loxBerryTemplating;
-        $this->pathProvider = $pathProvider;
     }
 
     /**
@@ -95,7 +90,7 @@ class TwigEnvironmentFactory
         $sandboxPolicy = new SecurityPolicy();
         $twig->addExtension(new SandboxExtension($sandboxPolicy));
 
-        $twig->addExtension(new LoxBerryTemplating($this->pathProvider));
+        $twig->addExtension($this->loxBerryTemplating);
     }
 
     /**

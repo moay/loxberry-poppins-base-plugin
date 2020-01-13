@@ -25,7 +25,10 @@ class LoxBerryTemplating extends AbstractExtension
         $this->pathProvider = $pathProvider;
     }
 
-    public function getFunctions()
+    /**
+     * @return array|TwigFunction[]
+     */
+    public function getFunctions(): array
     {
         return array(
             new TwigFunction('loxBerryHead',
@@ -35,17 +38,38 @@ class LoxBerryTemplating extends AbstractExtension
         );
     }
 
+    /**
+     * @return string
+     */
     public function printHead(): string
     {
-        $template = new Template([
-            'paths' => [$this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE)],
-            'filename' => 'head.html'
+        $templateDirectory = $this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE);
+        $templateFile = rtrim($templateDirectory, '/').'/head.html';
+
+        return $this->readTemplate($templateFile, [
+            'TEMPLATETITLE' => 'Test',
+            'LANG' => 'de',
+            'HTMLHEAD' => '',
         ]);
+    }
 
-        $template->param('TEMPLATETITLE', 'Test');
-        $template->param('LANG', 'de');
-        $template->param('HTMLHEAD', '');
+    /**
+     * @param string $fileName
+     * @param array $variables
+     *
+     * @return string
+     */
+    private function readTemplate(string $fileName, array $variables = []): string
+    {
+        if (!file_exists($fileName)) {
+            throw new \RuntimeException('Template file does not exist');
+        }
 
-        return $template->output();
+        $content = file_get_contents($fileName);
+        foreach ($variables as $key => $value) {
+            $content = str_replace('<TMPL_VAR '.$key.'>', $value, $content);
+        }
+
+        return $content;
     }
 }
