@@ -2,6 +2,7 @@
 
 namespace LoxBerryPlugin\Core\Frontend\Twig;
 
+use http\Env;
 use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\Logging\Logger;
 use LoxBerry\System\Plugin\PluginDatabase;
@@ -9,6 +10,7 @@ use LoxBerry\System\Plugin\PluginInformation;
 use LoxBerryPlugin\Core\Frontend\Twig\Globals\LoxBerryTemplating;
 use Twig\Environment;
 use Twig\Extension\SandboxExtension;
+use Twig\Sandbox\SecurityPolicy;
 
 /**
  * Class TwigEnvironmentFactory.
@@ -71,11 +73,20 @@ class TwigEnvironmentFactory
             'cache' => $this->rootPath.'/'.trim(self::TWIG_CACHE_FOLDER, '/'),
             'debug' => Logger::LOGLEVEL_DEBUG === $logLevel,
         ]);
-        $twig->addExtension(new SandboxExtension());
 
+        $this->addExtensions($twig);
         $this->registerGlobals($twig);
 
         return $twig;
+    }
+
+    /**
+     * @param Environment $twig
+     */
+    private function addExtensions(Environment $twig)
+    {
+        $sandboxPolicy = new SecurityPolicy();
+        $twig->addExtension(new SandboxExtension($sandboxPolicy));
     }
 
     /**
