@@ -87,6 +87,8 @@ class TwigEnvironmentFactory
     {
         $sandboxPolicy = new SecurityPolicy();
         $twig->addExtension(new SandboxExtension($sandboxPolicy));
+
+        $twig->addExtension(new LoxBerryTemplating());
     }
 
     /**
@@ -96,6 +98,5 @@ class TwigEnvironmentFactory
     {
         $twig->addGlobal('plugin', $this->pluginInformation);
         $twig->addGlobal('miniserver', $this->miniserverInformation);
-        $twig->addGlobal('templating', $this->loxBerryTemplating);
     }
 }
