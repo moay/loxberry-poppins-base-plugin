@@ -13,7 +13,8 @@
         "symfony/http-foundation": "^5.0",
         "twig/twig": "^3.0",
         "filp/whoops": "^2.7",
-        "symfony/var-dumper": "^5.0"
+        "symfony/var-dumper": "^5.0",
+        "alar/template": "dev-master#ec9c7711cb8c48917a7b7bc1364d7d9b22a2d3cf"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.3",

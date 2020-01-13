@@ -9,6 +9,6 @@ class LoxBerryTemplating
 {
     public function printHead()
     {
-        return '<h1>Testhead</h1>';
+        return '{% sandbox %}<h1>Testhead</h1>{% endsandbox %}';
     }
 }

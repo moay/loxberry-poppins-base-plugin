@@ -8,6 +8,7 @@ use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
 use LoxBerryPlugin\Core\Frontend\Twig\Globals\LoxBerryTemplating;
 use Twig\Environment;
+use Twig\Extension\SandboxExtension;
 
 /**
  * Class TwigEnvironmentFactory.
@@ -58,7 +59,7 @@ class TwigEnvironmentFactory
     {
         foreach (explode('/', trim(self::TWIG_CACHE_FOLDER, '/')) as $subfolder) {
             $folder = ($folder ?? $this->rootPath).'/'.$subfolder;
-            if (!mkdir($folder) && !is_dir($folder)) {
+            if (!is_dir($folder) && !mkdir($folder) && !is_dir($folder)) {
                 throw new \RuntimeException('Cache folder could not be created.');
             }
         }
@@ -70,6 +71,7 @@ class TwigEnvironmentFactory
             'cache' => $this->rootPath.'/'.trim(self::TWIG_CACHE_FOLDER, '/'),
             'debug' => Logger::LOGLEVEL_DEBUG === $logLevel,
         ]);
+        $twig->addExtension(new SandboxExtension());
 
         $this->registerGlobals($twig);
 
