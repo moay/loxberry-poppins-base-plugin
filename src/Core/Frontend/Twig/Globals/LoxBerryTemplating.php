@@ -16,6 +16,9 @@ class LoxBerryTemplating extends AbstractExtension
     /** @var PathProvider */
     private $pathProvider;
 
+    /** @var string */
+    private $templateDirectory;
+
     /**
      * LoxBerryTemplating constructor.
      * @param PathProvider $pathProvider
@@ -23,6 +26,7 @@ class LoxBerryTemplating extends AbstractExtension
     public function __construct(PathProvider $pathProvider)
     {
         $this->pathProvider = $pathProvider;
+        $this->templateDirectory = rtrim($this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE), '/');
     }
 
     /**
@@ -32,7 +36,11 @@ class LoxBerryTemplating extends AbstractExtension
     {
         return array(
             new TwigFunction('loxBerryHead',
-                [$this, 'printHead'],
+                [$this, 'htmlHead'],
+                ['is_safe' => ['html']]
+            ),
+            new TwigFunction('loxBerryPageStart',
+                [$this, 'pageStart'],
                 ['is_safe' => ['html']]
             ),
         );
@@ -41,15 +49,26 @@ class LoxBerryTemplating extends AbstractExtension
     /**
      * @return string
      */
-    public function printHead(): string
+    public function htmlHead(): string
     {
-        $templateDirectory = $this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE);
-        $templateFile = rtrim($templateDirectory, '/').'/head.html';
+        $templateFile = $this->templateDirectory.'/head.html';
 
         return $this->readTemplate($templateFile, [
             'TEMPLATETITLE' => 'Test',
             'LANG' => 'de',
             'HTMLHEAD' => '',
+        ]);
+    }
+
+    public function pageStart(bool $hidePanels = true): string
+    {
+        $templateFile = $this->templateDirectory.($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
+
+        return $this->readTemplate($templateFile, [
+            'TEMPLATETITLE' => 'Test',
+            'HELPLINK' => 'https://google.com',
+            'PAGE' => 'test',
+            'LANG' => 'de',
         ]);
     }
 
