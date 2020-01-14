@@ -146,7 +146,7 @@ class LoxBerryTemplating extends AbstractExtension
     public function pageEnd(): string
     {
         $templateFile = $this->templateDirectory.'/pageend.html';
-        $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile, ['POWER', 'UPDATES']);
+        $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile, ['POWER', 'UPDATES', 'HEADER']);
 
         return $this->replaceVariables($template, [
             'LANG' => $this->languageDeterminator->getLanguage(),
