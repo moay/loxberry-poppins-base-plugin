@@ -30,6 +30,7 @@ class LoxBerryTemplating extends AbstractExtension
 
     /** @var NavigationBarBuilder */
     private $navigationBarBuilder;
+
     /** @var TranslatedSystemTemplateLoader */
     private $systemTemplateLoader;
 
@@ -83,6 +84,9 @@ class LoxBerryTemplating extends AbstractExtension
     }
 
     /**
+     * @param string|null $pageTitle
+     * @param string|null $htmlHead
+     *                             
      * @return string
      */
     public function htmlHead(?string $pageTitle = null, ?string $htmlHead = ''): string
@@ -110,6 +114,13 @@ class LoxBerryTemplating extends AbstractExtension
         ]);
     }
 
+    /**
+     * @param null $pageTitle
+     * @param string|null $navBar
+     * @param bool $hidePanels
+     *
+     * @return string
+     */
     public function pageStart(?$pageTitle = null, string $navBar = null, bool $hidePanels = false): string
     {
         $templateFile = $this->templateDirectory . ($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
@@ -125,6 +136,9 @@ class LoxBerryTemplating extends AbstractExtension
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function pageEnd(): string
     {
         $templateFile = $this->templateDirectory . '/pageend.html';
