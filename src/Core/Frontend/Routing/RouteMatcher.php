@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RouteMatcher
 {
-    const ROUTING_CONFIGURATION = '/config/routes.yaml';
-
     /** @var array */
     private $routes;
 
@@ -21,9 +19,9 @@ class RouteMatcher
     /**
      * RouteMatcher constructor.
      *
-     * @param $rootPath
+     * @param RoutingConfigurationParser $routingConfigurationParser
      */
-    public function __construct($rootPath, RoutingConfigurationParser $routingConfigurationParser)
+    public function __construct(RoutingConfigurationParser $routingConfigurationParser)
     {
         $this->routes = $routingConfigurationParser->getConfiguration();
         $this->request = Request::createFromGlobals();
