@@ -39,13 +39,13 @@ class RouteMatcher
     {
         $routes = $this->routes[!$isPublic ? 'admin' : 'public'] ?? [];
 
-        foreach ($routes as $routeName => $configuration) {
+        foreach ($routes as $routeName => $routeConfiguration) {
             if ($this->isCurrentMatchedRoute($routeName, $isPublic)) {
                 $configuration = new PageRouteConfiguration();
-                $configuration->setControllerClassName($configuration['controller']);
+                $configuration->setControllerClassName($routeConfiguration['controller']);
                 $configuration->setMethod($this->request->getMethod());
-                $configuration->setAction($configuration['action']);
-                $configuration->setRoute($configuration['route']);
+                $configuration->setAction($routeConfiguration['action']);
+                $configuration->setRoute($routeConfiguration['route']);
 
                 return $configuration;
             }
