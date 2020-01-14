@@ -174,7 +174,7 @@ class LoxBerryTemplating extends AbstractExtension
 
     /**
      * @param string $fileContent
-     * @param array $variables
+     * @param array  $variables
      *
      * @return string
      */

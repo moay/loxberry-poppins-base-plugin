@@ -22,7 +22,7 @@ class UrlBuilder
      * UrlBuilder constructor.
      *
      * @param RoutingConfigurationParser $routingConfigurationParser
-     * @param string $packageDirectory
+     * @param string                     $packageDirectory
      */
     public function __construct(RoutingConfigurationParser $routingConfigurationParser, $packageDirectory)
     {
@@ -64,18 +64,17 @@ class UrlBuilder
 
     /**
      * @param string $route
-     * @param bool $isPublic
+     * @param bool   $isPublic
      *
      * @return string
      */
     private function buildUrl(string $route, bool $isPublic = false): string
     {
-        return sprintf('/%s/%s/%s',
+        return sprintf(
+            '/%s/%s/%s',
             trim($isPublic ? self::PUBLIC_BASE_URL : self::ADMIN_BASE_URL, '/'),
             trim($this->packageDirectory, '/'),
             trim($route, '/')
         );
     }
-
-
 }

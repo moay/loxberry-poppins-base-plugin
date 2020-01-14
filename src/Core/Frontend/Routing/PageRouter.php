@@ -5,7 +5,6 @@ namespace LoxBerryPlugin\Core\Frontend\Routing;
 use LoxBerryPlugin\Core\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
 
 /**
@@ -26,8 +25,8 @@ class PageRouter implements PageRouterInterface
      * PageRouter constructor.
      *
      * @param ControllerExecutor $controllerExecutor
-     * @param Environment $twig
-     * @param RouteMatcher $routeMatcher
+     * @param Environment        $twig
+     * @param RouteMatcher       $routeMatcher
      */
     public function __construct(ControllerExecutor $controllerExecutor, Environment $twig, RouteMatcher $routeMatcher)
     {
@@ -37,7 +36,7 @@ class PageRouter implements PageRouterInterface
     }
 
     /**
-     * @param bool   $isPublic
+     * @param bool $isPublic
      *
      * @return Response
      */

@@ -4,7 +4,6 @@ namespace LoxBerryPlugin\Core\Frontend\Routing;
 
 use LoxBerryPlugin\Core\Exception\RouteNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class RouteMatcher.
@@ -57,14 +56,14 @@ class RouteMatcher
 
     /**
      * @param string $routeName
-     * @param bool $isPublic
+     * @param bool   $isPublic
      *
      * @return bool
      */
     public function isCurrentMatchedRoute(string $routeName, bool $isPublic = false): bool
     {
         $configuredRoute = $this->routes[!$isPublic ? 'admin' : 'public'][$routeName] ?? null;
-        if ($configuredRoute === null) {
+        if (null === $configuredRoute) {
             return false;
         }
 
