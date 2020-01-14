@@ -86,7 +86,7 @@ class LoxBerryTemplating extends AbstractExtension
     /**
      * @param string|null $pageTitle
      * @param string|null $htmlHead
-     *                             
+     *
      * @return string
      */
     public function htmlHead(?string $pageTitle = null, ?string $htmlHead = ''): string
@@ -121,7 +121,7 @@ class LoxBerryTemplating extends AbstractExtension
      *
      * @return string
      */
-    public function pageStart(?$pageTitle = null, string $navBar = null, bool $hidePanels = false): string
+    public function pageStart(?string $pageTitle = null, ?string $navBar = null, bool $hidePanels = false): string
     {
         $templateFile = $this->templateDirectory . ($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
         $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile, ['HEADER']);
@@ -158,11 +158,11 @@ class LoxBerryTemplating extends AbstractExtension
     {
         $printedPageTitle = $this->systemConfigurationParser->getNetworkName();
         if ($pageTitle !== null) {
-            $printedPageTitle .= ' '.$pageTitle;
+            $printedPageTitle .= ' ' . $pageTitle;
         }
 
         if (trim($printedPageTitle) === '') {
-            $printedPageTitle = 'LoxBerry '.$this->systemConfigurationParser->getLoxBerryVersion();
+            $printedPageTitle = 'LoxBerry ' . $this->systemConfigurationParser->getLoxBerryVersion();
         }
 
         return $printedPageTitle;
