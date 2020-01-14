@@ -3,8 +3,8 @@
 use LoxBerry\ConfigurationParser\ConfigurationParser;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return function(ContainerConfigurator $configurator) {
-    $configurationFile = __DIR__ . '/../../plugin.cfg';
+return function (ContainerConfigurator $configurator) {
+    $configurationFile = __DIR__.'/../../plugin.cfg';
 
     if (!file_exists($configurationFile)) {
         throw new \RuntimeException('Cannot load plugin configuration. Configuration file missing.');

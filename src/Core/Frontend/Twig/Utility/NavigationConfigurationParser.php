@@ -9,11 +9,12 @@ use Symfony\Component\Yaml\Yaml;
  */
 class NavigationConfigurationParser
 {
-    /** @var array  */
+    /** @var array */
     private $navigationConfiguration;
 
     /**
      * NavigationConfigurationParser constructor.
+     *
      * @param string $rootPath
      */
     public function __construct($rootPath)

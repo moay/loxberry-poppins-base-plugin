@@ -9,7 +9,6 @@ class NavigationBarBuilder
 {
     public function __construct(NavigationConfigurationParser $configurationParser)
     {
-
     }
 
     public function getNavigationBarHtml(): string
@@ -19,7 +18,6 @@ class NavigationBarBuilder
 
     public function getNavigationBarJavaScript(): string
     {
-
         return 'test';
     }
 }

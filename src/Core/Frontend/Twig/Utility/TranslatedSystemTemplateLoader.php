@@ -24,7 +24,7 @@ class TranslatedSystemTemplateLoader
 
     /**
      * @param string $fileName
-     * @param array $translatedSections
+     * @param array  $translatedSections
      *
      * @return string
      */
