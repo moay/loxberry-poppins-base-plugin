@@ -2,6 +2,8 @@
 
 namespace LoxBerryPlugin\Core\Frontend\Navigation;
 
+use LoxBerryPlugin\Core\Frontend\Routing\RoutingConfigurationParser;
+
 /**
  * Class UrlBuilder.
  */
@@ -13,15 +15,18 @@ class UrlBuilder
     /** @var string */
     private $packageDirectory;
 
+    /** @var array */
+    private $routes;
+
     /**
      * UrlBuilder constructor.
      *
-     * @param NavigationConfigurationParser $navigationConfigurationParser
+     * @param RoutingConfigurationParser $routingConfigurationParser
      * @param string $packageDirectory
      */
-    public function __construct(NavigationConfigurationParser $navigationConfigurationParser, $packageDirectory)
+    public function __construct(RoutingConfigurationParser $routingConfigurationParser, $packageDirectory)
     {
-        $this->navigationConfiguration = $navigationConfigurationParser->getConfiguration();
+        $this->routes = $routingConfigurationParser->getConfiguration();
         $this->packageDirectory = $packageDirectory;
     }
 
@@ -32,11 +37,11 @@ class UrlBuilder
      */
     public function getAdminUrl(string $routeName): string
     {
-        if (!array_key_exists($routeName, $this->navigationConfiguration['admin'])) {
+        if (!array_key_exists($routeName, $this->routes['admin'])) {
             throw new \InvalidArgumentException(sprintf('No admin route with name %s found', $routeName));
         }
 
-        $route = $this->navigationConfiguration['admin'][$routeName];
+        $route = $this->routes['admin'][$routeName];
 
         return $this->buildUrl($route['route']);
     }
@@ -48,11 +53,11 @@ class UrlBuilder
      */
     public function getPublicUrl(string $routeName): string
     {
-        if (!array_key_exists($routeName, $this->navigationConfiguration['public'])) {
+        if (!array_key_exists($routeName, $this->routes['public'])) {
             throw new \InvalidArgumentException(sprintf('No public route with name %s found', $routeName));
         }
 
-        $route = $this->navigationConfiguration['public'][$routeName];
+        $route = $this->routes['public'][$routeName];
 
         return $this->buildUrl($route['route'], true);
     }

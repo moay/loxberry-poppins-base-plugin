@@ -24,9 +24,9 @@ class RouteMatcher
      *
      * @param $rootPath
      */
-    public function __construct($rootPath)
+    public function __construct($rootPath, RoutingConfigurationParser $routingConfigurationParser)
     {
-        $this->routes = Yaml::parseFile(rtrim($rootPath, '/').self::ROUTING_CONFIGURATION);
+        $this->routes = $routingConfigurationParser->getConfiguration();
         $this->request = Request::createFromGlobals();
     }
 

@@ -59,6 +59,8 @@ class NavigationBarBuilder
                 $navigationItem['title'] ?? $index
             );
         }
+        $navigationBar .= '</ul></div>';
 
+        return $navigationBar;
     }
 }
