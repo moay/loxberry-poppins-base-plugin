@@ -98,7 +98,7 @@ class LoxBerryTemplating extends AbstractExtension
         $templateFile = $this->templateDirectory.'/head.html';
         $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile);
 
-        return $this->readTemplate($template, [
+        return $this->replaceVariables($template, [
             'TEMPLATETITLE' => $this->getPrintedPageTitle($pageTitle),
             'LANG' => $this->languageDeterminator->getLanguage(),
             'HTMLHEAD' => $htmlHead,
@@ -113,7 +113,7 @@ class LoxBerryTemplating extends AbstractExtension
         $templateFile = $this->templateDirectory.'/foot.html';
         $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile);
 
-        return $this->readTemplate($template, [
+        return $this->replaceVariables($template, [
             'LANG' => $this->languageDeterminator->getLanguage(),
         ]);
     }
@@ -130,7 +130,7 @@ class LoxBerryTemplating extends AbstractExtension
         $templateFile = $this->templateDirectory.($hidePanels ? '/pagestart_nopanels.html' : '/pagestart.html');
         $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile, ['HEADER']);
 
-        return $this->readTemplate($template, [
+        return $this->replaceVariables($template, [
             'TEMPLATETITLE' => $this->getPrintedPageTitle($pageTitle),
             'HELPLINK' => 'https://google.com',
             'PAGE' => 'test',
@@ -148,7 +148,7 @@ class LoxBerryTemplating extends AbstractExtension
         $templateFile = $this->templateDirectory.'/pageend.html';
         $template = $this->systemTemplateLoader->loadTranslatedFile($templateFile, ['POWER', 'UPDATES']);
 
-        return $this->readTemplate($template, [
+        return $this->replaceVariables($template, [
             'LANG' => $this->languageDeterminator->getLanguage(),
         ]);
     }
@@ -173,22 +173,17 @@ class LoxBerryTemplating extends AbstractExtension
     }
 
     /**
-     * @param string $fileName
-     * @param array  $variables
-     *
+     * @param string $fileContent
+     * @param array $variables
+     *                        
      * @return string
      */
-    private function readTemplate(string $fileName, array $variables = []): string
+    private function replaceVariables(string $fileContent, array $variables = []): string
     {
-        if (!file_exists($fileName)) {
-            throw new \RuntimeException('Template file does not exist');
-        }
-
-        $content = file_get_contents($fileName);
         foreach ($variables as $key => $value) {
-            $content = str_replace('<TMPL_VAR '.$key.'>', $value, $content);
+            $fileContent = str_replace('<TMPL_VAR '.$key.'>', $value, $fileContent);
         }
 
-        return $content;
+        return $fileContent;
     }
 }
