@@ -40,7 +40,7 @@ class TranslatedSystemTemplateLoader
             $translations = $this->translationProvider->getSystemTranslations();
             preg_match_all('/\<TMPL_VAR '.$section.'\.([A-Za-z0-9-_]+)\>/', $templateContent, $matches);
             foreach ($matches as $toReplace) {
-                $translated = $translations->get($section, $toReplace);
+                $translated = $translations->getTranslated($section, $toReplace);
                 $templateContent = str_replace(sprintf('<TMPL_VAR %s.%s>', $section, $toReplace), $translated, $templateContent);
             }
         }
