@@ -4,6 +4,7 @@ services:
     autoconfigure: true
     public: false
     bind:
+      $packageDirectory: '%plugin.directory%'
       $packageName: '%plugin.name%'
       $cronLogger: '@logger.cron'
       $rootPath: '%runtime.root_dir%'

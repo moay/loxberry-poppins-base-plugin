@@ -136,7 +136,7 @@ class LoxBerryTemplating extends AbstractExtension
             'PAGE' => 'test',
             'LANG' => $this->languageDeterminator->getLanguage(),
             'TOPNAVBAR' => $this->navigationBarBuilder->getNavigationBarHtml(),
-            'NAVBARJS' => $this->navigationBarBuilder->getNavigationBarJavaScript(),
+            'NAVBARJS' => '',
         ]);
     }
 

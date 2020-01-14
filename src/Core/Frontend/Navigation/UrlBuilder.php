@@ -1,0 +1,76 @@
+<?php
+
+namespace LoxBerryPlugin\Core\Frontend\Navigation;
+
+/**
+ * Class UrlBuilder.
+ */
+class UrlBuilder
+{
+    const ADMIN_BASE_URL = 'admin/plugins';
+    const PUBLIC_BASE_URL = 'plugins';
+
+    /** @var string */
+    private $packageDirectory;
+
+    /**
+     * UrlBuilder constructor.
+     *
+     * @param NavigationConfigurationParser $navigationConfigurationParser
+     * @param string $packageDirectory
+     */
+    public function __construct(NavigationConfigurationParser $navigationConfigurationParser, $packageDirectory)
+    {
+        $this->navigationConfiguration = $navigationConfigurationParser->getConfiguration();
+        $this->packageDirectory = $packageDirectory;
+    }
+
+    /**
+     * @param string $routeName
+     *
+     * @return string
+     */
+    public function getAdminUrl(string $routeName): string
+    {
+        if (!array_key_exists($routeName, $this->navigationConfiguration['admin'])) {
+            throw new \InvalidArgumentException(sprintf('No admin route with name %s found', $routeName));
+        }
+
+        $route = $this->navigationConfiguration['admin'][$routeName];
+
+        return $this->buildUrl($route['route']);
+    }
+
+    /**
+     * @param string $routeName
+     *
+     * @return string
+     */
+    public function getPublicUrl(string $routeName): string
+    {
+        if (!array_key_exists($routeName, $this->navigationConfiguration['public'])) {
+            throw new \InvalidArgumentException(sprintf('No public route with name %s found', $routeName));
+        }
+
+        $route = $this->navigationConfiguration['public'][$routeName];
+
+        return $this->buildUrl($route['route'], true);
+    }
+
+    /**
+     * @param string $route
+     * @param bool $isPublic
+     *
+     * @return string
+     */
+    private function buildUrl(string $route, bool $isPublic = false): string
+    {
+        return sprintf('/%s/%s/%s',
+            trim($isPublic ? self::PUBLIC_BASE_URL : self::ADMIN_BASE_URL, '/'),
+            trim($this->packageDirectory, '/'),
+            trim($route, '/')
+        );
+    }
+
+
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace LoxBerryPlugin\Core\Frontend\Twig\Utility;
+namespace LoxBerryPlugin\Core\Frontend\Navigation;
 
 use Symfony\Component\Yaml\Yaml;
 

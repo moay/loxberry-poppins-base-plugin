@@ -6,5 +6,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface PageRouterInterface
 {
-    public function process(string $route, bool $isPublic = false): Response;
+    public function process(bool $isPublic = false): Response;
 }
