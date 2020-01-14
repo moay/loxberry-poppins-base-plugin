@@ -4,7 +4,7 @@ admin:
     controller: 'LoxBerryPlugin\Controller\DummyController'
     method: 'GET'
     action: 'testPage'
-  log:
+  logs:
     route: '/logs'
     controller: 'LoxBerryPlugin\Controller\DummyController'
     method: 'GET,POST'

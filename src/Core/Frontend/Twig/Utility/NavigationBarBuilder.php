@@ -50,12 +50,16 @@ class NavigationBarBuilder
 
         $navigationBar = '<div data-role="navbar"><ul>';
         foreach ($this->navigationConfiguration as $index => $navigationItem) {
+            if (!array_key_exists('route', $navigationItem)){
+                throw new \RuntimeException('Route must be configured on all navigation items');
+            }
+
             $navigationBar .= sprintf(
                 '<li><div style="position:relative"><a href="%s" %s %s>%s</a></div></li>',
                 $this->urlBuilder->getAdminUrl($navigationItem['route']),
                 array_key_exists('target', $navigationItem) ? 'target="' . $navigationItem['target'] . '"' : '',
-                array_key_exists('route', $navigationItem) ?
-                    $this->routeMatcher->isCurrentMatchedRoute($navigationItem['route'], false) : '',
+                $this->routeMatcher->isCurrentMatchedRoute($navigationItem['route'], false) ?
+                    'class="ui-btn-active"' : '',
                 $navigationItem['title'] ?? $index
             );
         }
