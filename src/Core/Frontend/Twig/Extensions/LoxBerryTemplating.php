@@ -175,7 +175,7 @@ class LoxBerryTemplating extends AbstractExtension
     /**
      * @param string $fileContent
      * @param array $variables
-     *                        
+     *
      * @return string
      */
     private function replaceVariables(string $fileContent, array $variables = []): string
