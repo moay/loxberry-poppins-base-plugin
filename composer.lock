@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd623f87d51dc2bbef33756e64718fe2",
+    "content-hash": "eacaad0c51f56ebfe6afefda5da6b226",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -129,16 +129,16 @@
         },
         {
             "name": "moay/loxberry-core",
-            "version": "1.0.0-beta6",
+            "version": "1.0.0-beta7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moay/loxberry-php-core.git",
-                "reference": "edd95c329a124c2dd6ff10f4aa4c8fdf97a29015"
+                "reference": "fcce5d4fa153fc69739224a362f446d9823bcd65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moay/loxberry-php-core/zipball/edd95c329a124c2dd6ff10f4aa4c8fdf97a29015",
-                "reference": "edd95c329a124c2dd6ff10f4aa4c8fdf97a29015",
+                "url": "https://api.github.com/repos/moay/loxberry-php-core/zipball/fcce5d4fa153fc69739224a362f446d9823bcd65",
+                "reference": "fcce5d4fa153fc69739224a362f446d9823bcd65",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 }
             ],
             "description": "The LoxBerry system library for PHP interactions",
-            "time": "2020-01-05T20:43:01+00:00"
+            "time": "2020-01-15T16:00:00+00:00"
         },
         {
             "name": "pear/config_lite",
