@@ -9,6 +9,13 @@ php composer.phar install --no-interaction --no-dev --no-progress
 php composer.phar dump-autoload
 echo "<OK> Done installing vendor libraries"
 
+echo "<INFO> Moving all translation files to templates folder"
+if [ -d "./resources/templates" ]; then
+  mkdir ./resources/templates
+fi
+find ./translations/*.ini -maxdepth 0 ! -name . ! -name .. -print -exec mv {} ./resources/templates/ \;
+rm -rf ./translations
+
 echo "<INFO> Moving all code folders to data"
 cp ./config/plugin.cfg ./plugin.cfg
 mkdir ./data

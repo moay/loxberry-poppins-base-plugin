@@ -90,7 +90,7 @@ class LoxBerryTemplateElements extends AbstractExtension
         ];
     }
 
-    public function getLogFileButton(string $logFile, ?string $label = null, bool $mini = true, ?string $icon = 'action'): string
+    public function getLogFileButton(string $logGroup, ?string $label = null, bool $mini = true, ?string $icon = 'action'): string
     {
         if ($label === null) {
             $label = $this->systemTranslations->getTranslated('COMMON.BUTTON_LOGFILE');
@@ -99,8 +99,8 @@ class LoxBerryTemplateElements extends AbstractExtension
         }
 
         return sprintf(
-            '<a data-role="button" href="/admin/system/tools/logfile.cgi?logfile=%s&package=%s&header=html&format=template" target="_blank" data-inline="true" data-mini="%s" data-icon="%s">%s</a>',
-            $logFile,
+            '<a data-role="button" href="/admin/system/tools/logfile.cgi?name=%s&package=%s&header=html&format=template" target="_blank" data-inline="true" data-mini="%s" data-icon="%s">%s</a>',
+            $logGroup,
             $this->packageName,
             $mini ? 'true' : 'false',
             $icon,
