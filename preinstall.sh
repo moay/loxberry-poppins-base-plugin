@@ -10,8 +10,8 @@ php composer.phar dump-autoload
 echo "<OK> Done installing vendor libraries"
 
 echo "<INFO> Moving all translation files to templates folder"
-mkdir -p ./resources/templates
-find ./translations/*.ini -maxdepth 0 ! -name . ! -name .. -print -exec mv {} ./resources/templates/ \;
+mkdir -p ./resources/templates/lang
+find ./translations/*.ini -maxdepth 0 ! -name . ! -name .. -print -exec mv {} ./resources/templates/lang/ \;
 rm -rf ./translations
 
 echo "<INFO> Moving all code folders to data"
