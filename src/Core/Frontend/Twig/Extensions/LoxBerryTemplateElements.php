@@ -125,7 +125,7 @@ class LoxBerryTemplateElements extends AbstractExtension
             $this->packageName,
             $mini ? 'true' : 'false',
             $icon,
-            $label
+            $this->pluginTranslations->getTranslated($label)
         );
     }
 
@@ -164,7 +164,7 @@ class LoxBerryTemplateElements extends AbstractExtension
             $this->getLogListUrl($logGroup),
             $mini ? 'true' : 'false',
             $icon,
-            $label
+            $this->pluginTranslations->getTranslated($label)
         );
     }
 
@@ -219,7 +219,7 @@ class LoxBerryTemplateElements extends AbstractExtension
 
         return sprintf(
             '<div class="ui-field-contain">%s<select name="%s" id="%s" data-mini="%s">%s</select></div>',
-            null !== $label ? '<label for="'.$fieldName.'">'.$label.'</label>' : '',
+            null !== $label ? '<label for="'.$fieldName.'">'.$this->pluginTranslations->getTranslated($label).'</label>' : '',
             $fieldName,
             $fieldName,
             $mini ? 'true' : 'false',
