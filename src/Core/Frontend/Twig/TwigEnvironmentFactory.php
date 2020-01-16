@@ -41,9 +41,9 @@ class TwigEnvironmentFactory
      *
      * @param string $rootPath
      * @param $packageName
-     * @param PluginDatabase $pluginDatabase
-     * @param MiniserverInformation $miniserverInformation
-     * @param LoxBerryTemplating $loxBerryTemplating
+     * @param PluginDatabase           $pluginDatabase
+     * @param MiniserverInformation    $miniserverInformation
+     * @param LoxBerryTemplating       $loxBerryTemplating
      * @param LoxBerryTemplateElements $templateElements
      */
     public function __construct(

@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block body %}
+    {{ logListButton('Cron', 'buttons.logfile') }}
     {{ logFileButton('Cron', 'buttons.logfile') }}
+    {{ miniserverSelect() }}
+    {{ logLevelSelect() }}
     <h2>{{ plugin.name }}</h2>
     <h3>{{ plugin.version }}</h3>
 {% endblock %}

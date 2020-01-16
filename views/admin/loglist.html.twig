@@ -1,0 +1,9 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block htmlHead %}
+<script>console.log('test');</script>
+{% endblock %}
+
+{% block body %}
+    {{ logList('Cron') }}
+{% endblock %}

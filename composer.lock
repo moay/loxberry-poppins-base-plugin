@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eacaad0c51f56ebfe6afefda5da6b226",
+    "content-hash": "a80d1828267541fe18a6852ca4e74e5c",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -1724,6 +1724,38 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "moay/loxberry-plugin-pushinstall",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moay/loxberry-plugin-pushinstall.git",
+                "reference": "d0b177693c583383dd337c96c4e13824c1ebb704"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moay/loxberry-plugin-pushinstall/zipball/d0b177693c583383dd337c96c4e13824c1ebb704",
+                "reference": "d0b177693c583383dd337c96c4e13824c1ebb704",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/pushinstall",
+                "bin/pushinstall-enable-ssh-key"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "moay",
+                    "email": "mv@moay.de"
+                }
+            ],
+            "description": "Provides a quick way to push and install a loxberry plugin via ssh",
+            "time": "2020-01-16T13:04:50+00:00"
         },
         {
             "name": "myclabs/deep-copy",
