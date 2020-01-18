@@ -4,8 +4,6 @@ namespace LoxBerryPlugin\Core\Frontend\Twig\Extensions;
 
 use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\ConfigurationParser\SystemConfigurationParser;
-use LoxBerry\System\Localization\LanguageFileParser;
-use LoxBerry\System\Localization\TranslationProvider;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Paths;
 use LoxBerry\System\Plugin\PluginDatabase;
@@ -24,12 +22,6 @@ class LoxBerryTemplateElements extends AbstractExtension
     /** @var string */
     private $templateDirectory;
 
-    /** @var LanguageFileParser */
-    private $systemTranslations;
-
-    /** @var LanguageFileParser */
-    private $pluginTranslations;
-
     /** @var string */
     private $packageName;
 
@@ -39,29 +31,31 @@ class LoxBerryTemplateElements extends AbstractExtension
     /** @var PluginInformation */
     private $pluginInformation;
 
+    /** @var Translations */
+    private $translations;
+
     /**
      * LoxBerryTemplateElements constructor.
      *
-     * @param PathProvider              $pathProvider
-     * @param TranslationProvider       $translationProvider
+     * @param PathProvider $pathProvider
      * @param SystemConfigurationParser $systemConfiguration
-     * @param PluginDatabase            $pluginDatabase
-     * @param string                    $packageName
+     * @param PluginDatabase $pluginDatabase
+     * @param Translations $translations
+     * @param string $packageName
      */
     public function __construct(
         PathProvider $pathProvider,
-        TranslationProvider $translationProvider,
         SystemConfigurationParser $systemConfiguration,
         PluginDatabase $pluginDatabase,
+        Translations $translations,
         $packageName
     ) {
         $this->pathProvider = $pathProvider;
         $this->templateDirectory = rtrim($this->pathProvider->getPath(Paths::PATH_SYSTEM_TEMPLATE), '/');
-        $this->systemTranslations = $translationProvider->getSystemTranslations();
-        $this->pluginTranslations = $translationProvider->getPluginTranslations($packageName);
         $this->packageName = $packageName;
         $this->systemConfiguration = $systemConfiguration;
         $this->pluginInformation = $pluginDatabase->getPluginInformation($packageName);
+        $this->translations = $translations;
     }
 
     /**
@@ -113,19 +107,13 @@ class LoxBerryTemplateElements extends AbstractExtension
      */
     public function getLogFileButton(string $logGroup, ?string $label = null, bool $mini = true, ?string $icon = 'action'): string
     {
-        if (null === $label) {
-            $label = $this->systemTranslations->getTranslated('COMMON.BUTTON_LOGFILE');
-        } else {
-            $label = $this->pluginTranslations->getTranslated($label);
-        }
-
         return sprintf(
             '<a data-role="button" href="/admin/system/tools/logfile.cgi?name=%s&package=%s&header=html&format=template" target="_blank" data-inline="true" data-mini="%s" data-icon="%s">%s</a>',
             $logGroup,
             $this->packageName,
             $mini ? 'true' : 'false',
             $icon,
-            $this->pluginTranslations->getTranslated($label)
+            $this->translations->translate($label ?? 'COMMON.BUTTON_LOGFILE')
         );
     }
 
@@ -153,18 +141,12 @@ class LoxBerryTemplateElements extends AbstractExtension
      */
     public function getLogListButton(string $logGroup, ?string $label = null, bool $mini = true, ?string $icon = 'action'): string
     {
-        if (null === $label) {
-            $label = $this->systemTranslations->getTranslated('COMMON.BUTTON_LOGFILE_LIST');
-        } else {
-            $label = $this->pluginTranslations->getTranslated($label);
-        }
-
         return sprintf(
             '<a data-role="button" href="%s" target="_blank" data-inline="true" data-mini="%s" data-icon="%s">%s</a>',
             $this->getLogListUrl($logGroup),
             $mini ? 'true' : 'false',
             $icon,
-            $this->pluginTranslations->getTranslated($label)
+            $this->translations->translate($label ?? 'COMMON.BUTTON_LOGFILE_LIST')
         );
     }
 
@@ -219,7 +201,7 @@ class LoxBerryTemplateElements extends AbstractExtension
 
         return sprintf(
             '<div class="ui-field-contain">%s<select name="%s" id="%s" data-mini="%s">%s</select></div>',
-            null !== $label ? '<label for="'.$fieldName.'">'.$this->pluginTranslations->getTranslated($label).'</label>' : '',
+            null !== $label ? '<label for="'.$fieldName.'">'.$this->translations->translate($label).'</label>' : '',
             $fieldName,
             $fieldName,
             $mini ? 'true' : 'false',
@@ -245,9 +227,7 @@ class LoxBerryTemplateElements extends AbstractExtension
         if ('' !== $label) {
             $output .= sprintf(
                 '<label for="'.$fieldName.'" style="display:inline-block;">%s</label>',
-                null === $label ?
-                    $this->systemTranslations->getTranslated('PLUGININSTALL.UI_LABEL_LOGGING_LEVEL') :
-                    $this->pluginTranslations->getTranslated($label)
+                $this->translations->translate($label ?? 'PLUGININSTALL.UI_LABEL_LOGGING_LEVEL')
             );
         }
 
@@ -256,11 +236,11 @@ class LoxBerryTemplateElements extends AbstractExtension
         $output .= <<<EOF
 	
 	<select name="{$fieldName}" id="{$fieldName}" data-mini="{($mini ? 'true' : 'false')}">
-		<option value="0">{$this->systemTranslations->getTranslated('PLUGININSTALL.UI_LOG_0_OFF')}</option>
-		<option value="3">{$this->systemTranslations->getTranslated('PLUGININSTALL.UI_LOG_3_ERRORS')}</option>
-		<option value="4">{$this->systemTranslations->getTranslated('PLUGININSTALL.UI_LOG_4_WARNING')}</option>
-		<option value="6">{$this->systemTranslations->getTranslated('PLUGININSTALL.UI_LOG_6_INFO')}</option>
-		<option value="7">{$this->systemTranslations->getTranslated('PLUGININSTALL.UI_LOG_7_DEBUG')}</option>
+		<option value="0">{$this->translations->translate('PLUGININSTALL.UI_LOG_0_OFF')}</option>
+		<option value="3">{$this->translations->translate('PLUGININSTALL.UI_LOG_3_ERRORS')}</option>
+		<option value="4">{$this->translations->translate('PLUGININSTALL.UI_LOG_4_WARNING')}</option>
+		<option value="6">{$this->translations->translate('PLUGININSTALL.UI_LOG_6_INFO')}</option>
+		<option value="7">{$this->translations->translate('PLUGININSTALL.UI_LOG_7_DEBUG')}</option>
 	</select>
 	</fieldset>
 	</div>
