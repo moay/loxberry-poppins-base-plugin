@@ -6,8 +6,8 @@ use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\Logging\Logger;
 use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
-use LoxBerryPlugin\Core\Frontend\Twig\Extensions\LoxBerryTemplateElements;
-use LoxBerryPlugin\Core\Frontend\Twig\Extensions\LoxBerryTemplating;
+use LoxBerryPlugin\Core\Frontend\Twig\Extensions\TemplateElements;
+use LoxBerryPlugin\Core\Frontend\Twig\Extensions\Templating;
 use LoxBerryPlugin\Core\Frontend\Twig\Extensions\Translations;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
@@ -38,29 +38,28 @@ class TwigEnvironmentFactory
     /**
      * TwigEnvironmentFactory constructor.
      *
+     * @param AbstractExtension[] $extensions
      * @param string $rootPath
      * @param $packageName
-     * @param PluginDatabase           $pluginDatabase
-     * @param MiniserverInformation    $miniserverInformation
-     * @param LoxBerryTemplating       $loxBerryTemplating
-     * @param LoxBerryTemplateElements $templateElements
-     * @param Translations             $translations
+     * @param PluginDatabase $pluginDatabase
+     * @param MiniserverInformation $miniserverInformation
      */
     public function __construct(
+        iterable $extensions,
         string $rootPath,
         $packageName,
         PluginDatabase $pluginDatabase,
-        MiniserverInformation $miniserverInformation,
-        LoxBerryTemplating $loxBerryTemplating,
-        LoxBerryTemplateElements $templateElements,
-        Translations $translations
+        MiniserverInformation $miniserverInformation
     ) {
         $this->rootPath = $rootPath;
         $this->pluginInformation = $pluginDatabase->getPluginInformation($packageName);
         $this->miniserverInformation = $miniserverInformation;
-        $this->extensions[] = $loxBerryTemplating;
-        $this->extensions[] = $templateElements;
-        $this->extensions[] = $translations;
+        foreach ($extensions as $extension) {
+            if (!$extension instanceof AbstractExtension) {
+                throw new \InvalidArgumentException('Injected extensions must be twig extensions.');
+            }
+            $this->extensions[] = $extension;
+        }
     }
 
     /**

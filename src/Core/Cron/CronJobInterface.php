@@ -4,7 +4,7 @@ namespace LoxBerryPlugin\Core\Cron;
 
 interface CronJobInterface
 {
-    public function getInterval(): int;
+    public function getInterval();
 
     public function execute();
 }

@@ -16,6 +16,10 @@
     <div>{{ trans('test.translation2') }}</div>
     <div>{{ translate('test.translation2') }}</div>
 
+    <a data-role-btn href="{{ adminRouteUrl('logs') }}">Logs</a>
+
+    <img src="{{ assetUrl('img/testimage.jpg') }}" />
+
     <form method="POST">
         <input type="text" value="{{ fieldValue }}" name="newFieldValue" />
         <button type="submit">{{ 'form.save'|trans }}</button>

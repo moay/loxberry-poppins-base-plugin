@@ -12,9 +12,9 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class LoxBerryTemplateElements.
+ * Class TemplateElements.
  */
-class LoxBerryTemplateElements extends AbstractExtension
+class TemplateElements extends AbstractExtension
 {
     /** @var PathProvider */
     private $pathProvider;
@@ -35,7 +35,7 @@ class LoxBerryTemplateElements extends AbstractExtension
     private $translations;
 
     /**
-     * LoxBerryTemplateElements constructor.
+     * TemplateElements constructor.
      *
      * @param PathProvider $pathProvider
      * @param SystemConfigurationParser $systemConfiguration

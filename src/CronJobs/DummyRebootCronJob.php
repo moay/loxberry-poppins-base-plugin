@@ -8,15 +8,15 @@ use LoxBerryPlugin\Core\Cron\CronJobRunner;
 use LoxBerryPlugin\Core\Cron\CronLoggerFactory;
 
 /**
- * Class DummyCronJob.
+ * Class DummyRebootCronJob.
  */
-class DummyCronJob implements CronJobInterface
+class DummyRebootCronJob implements CronJobInterface
 {
     /** @var Logger */
     private $cronLogger;
 
     /**
-     * DummyCronJob constructor.
+     * DummyRebootCronJob constructor.
      *
      * @param CronLoggerFactory $cronLogger
      */
@@ -27,11 +27,11 @@ class DummyCronJob implements CronJobInterface
 
     public function getInterval()
     {
-        return CronJobRunner::INTERVAL_EVERY_TEN_MINUTES;
+        return CronJobRunner::INTERVAL_REBOOT;
     }
 
     public function execute()
     {
-        $this->cronLogger->log('Cronjob executed', Logger::LOGLEVEL_INFO);
+        $this->cronLogger->log('Reboot Cronjob executed', Logger::LOGLEVEL_INFO);
     }
 }

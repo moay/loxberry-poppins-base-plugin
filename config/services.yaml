@@ -14,6 +14,8 @@ services:
       tags: ['plugin.cron_job']
     LoxBerryPlugin\Core\Frontend\AbstractController:
       tags: ['plugin.controller', 'controller.service_arguments']
+    Twig\Extension\AbstractExtension:
+      tags: ['twig.extension']
 
   LoxBerryPlugin\:
     resource: '../src/*'
@@ -36,6 +38,10 @@ services:
 
   LoxBerry\Logging\Database\LogFileDatabase:
     factory: '@LoxBerry\Logging\Database\LogFileDatabaseFactory'
+
+  LoxBerryPlugin\Core\Frontend\Twig\TwigEnvironmentFactory:
+    arguments:
+      $extensions: !tagged twig.extension
 
   Twig\Environment:
     class: 'Twig\Environment'

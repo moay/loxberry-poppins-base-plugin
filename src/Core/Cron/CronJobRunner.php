@@ -17,8 +17,14 @@ class CronJobRunner
     const INTERVAL_EVERY_TWENTY_MINUTES = 20;
     const INTERVAL_EVERY_HALF_HOUR = 30;
     const INTERVAL_EVERY_HOUR = 60;
+    const INTERVAL_EVERY_DAY = self::INTERVAL_EVERY_HOUR * 24;
+    const INTERVAL_EVERY_WEEK = self::INTERVAL_EVERY_DAY * 7;
+    const INTERVAL_EVERY_MONTH = self::INTERVAL_EVERY_DAY * 30;
+    const INTERVAL_EVERY_YEAR = self::INTERVAL_EVERY_DAY * 365;
 
-    const KNOWN_INTERVALS = [
+    const INTERVAL_REBOOT = 'reboot';
+
+    const KNOWN_TIMEBASED_INTERVALS = [
         self::INTERVAL_EVERY_MINUTE,
         self::INTERVAL_EVERY_TWO_MINUTES,
         self::INTERVAL_EVERY_THREE_MINUTES,
@@ -27,6 +33,9 @@ class CronJobRunner
         self::INTERVAL_EVERY_TWENTY_MINUTES,
         self::INTERVAL_EVERY_HALF_HOUR,
         self::INTERVAL_EVERY_HOUR,
+        self::INTERVAL_EVERY_WEEK,
+        self::INTERVAL_EVERY_MONTH,
+        self::INTERVAL_EVERY_YEAR,
     ];
 
     /** @var CronJobInterface[] */
@@ -55,18 +64,36 @@ class CronJobRunner
     public function executeCronJobs()
     {
         foreach ($this->cronJobs as $cronJob) {
-            if (!in_array($cronJob->getInterval(), self::KNOWN_INTERVALS)) {
-                throw new \RuntimeException('Unknown CronJob interval');
+            if (!in_array($cronJob->getInterval(), self::KNOWN_TIMEBASED_INTERVALS)) {
+                continue;
             }
             if (0 === round(time() / 60) % $cronJob->getInterval()) {
-                try {
-                    $this->logger->log('Executing CronJob '.get_class($cronJob));
-                    $cronJob->execute();
-                    $this->logger->success('Finished execution of CronJob '.get_class($cronJob));
-                } catch (\Exception $exception) {
-                    $this->logger->error('Error during cron job execution of CronJob '.get_class($cronJob));
-                }
+                $this->executeCronJob($cronJob);
             }
+        }
+    }
+
+    public function executeRebootCronJobs()
+    {
+        foreach ($this->cronJobs as $cronJob) {
+            if ($cronJob->getInterval() !== self::INTERVAL_REBOOT) {
+                continue;
+            }
+            $this->executeCronJob($cronJob);
+        }
+    }
+
+    /**
+     * @param CronJobInterface $cronJob
+     */
+    private function executeCronJob(CronJobInterface $cronJob)
+    {
+        try {
+            $this->logger->log('Executing CronJob '.get_class($cronJob));
+            $cronJob->execute();
+            $this->logger->success('Finished execution of CronJob '.get_class($cronJob));
+        } catch (\Exception $exception) {
+            $this->logger->error('Error during cron job execution of CronJob '.get_class($cronJob));
         }
     }
 }

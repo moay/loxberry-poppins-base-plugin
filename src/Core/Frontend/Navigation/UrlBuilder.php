@@ -37,7 +37,7 @@ class UrlBuilder
      */
     public function getAdminUrl(string $routeName): string
     {
-        if (!array_key_exists($routeName, $this->routes['admin'])) {
+        if (!array_key_exists($routeName, $this->routes['admin'] ?? [])) {
             throw new \InvalidArgumentException(sprintf('No admin route with name %s found', $routeName));
         }
 
@@ -53,7 +53,7 @@ class UrlBuilder
      */
     public function getPublicUrl(string $routeName): string
     {
-        if (!array_key_exists($routeName, $this->routes['public'])) {
+        if (!array_key_exists($routeName, $this->routes['public'] ?? [])) {
             throw new \InvalidArgumentException(sprintf('No public route with name %s found', $routeName));
         }
 
