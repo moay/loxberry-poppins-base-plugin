@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "248dc07f1f1864f06e776ecee02bc8e8",
+    "content-hash": "9d310a834eeb85edccfee08371075d5e",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -129,7 +129,7 @@
         },
         {
             "name": "moay/loxberry-core",
-            "version": "dev-master",
+            "version": "1.0.0-beta11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moay/loxberry-php-core.git",
@@ -3952,7 +3952,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "pear/config_lite": 20,
-        "moay/loxberry-core": 20
+        "moay/loxberry-core": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
