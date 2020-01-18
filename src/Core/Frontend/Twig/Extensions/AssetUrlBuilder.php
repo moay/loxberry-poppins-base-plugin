@@ -20,7 +20,7 @@ class AssetUrlBuilder extends AbstractExtension
 
     /** @var string */
     private $packageName;
-    
+
     /** @var string */
     private $packageDirectory;
 
@@ -28,8 +28,8 @@ class AssetUrlBuilder extends AbstractExtension
      * RouteUrlBuilder constructor.
      *
      * @param PluginPathProvider $pluginPathProvider
-     * @param string $packageName
-     * @param string $packageDirectory
+     * @param string             $packageName
+     * @param string             $packageDirectory
      */
     public function __construct(PluginPathProvider $pluginPathProvider, $packageName, $packageDirectory)
     {
@@ -58,7 +58,7 @@ class AssetUrlBuilder extends AbstractExtension
     {
         $realPath = rtrim($this->pluginPathProvider->getPath(Paths::PATH_PLUGIN_HTML), '/')
             .'/'.self::ASSET_FOLDER
-            .'/'.ltrim($assetFilePath,'/');
+            .'/'.ltrim($assetFilePath, '/');
 
         if (!file_exists($realPath)) {
             throw new \InvalidArgumentException();
@@ -66,10 +66,10 @@ class AssetUrlBuilder extends AbstractExtension
 
         return sprintf(
             '/%s/%s/%s/%s',
-            trim(UrlBuilder::PUBLIC_BASE_URL,'/'),
+            trim(UrlBuilder::PUBLIC_BASE_URL, '/'),
             $this->packageDirectory,
             self::ASSET_FOLDER,
-            ltrim($assetFilePath,'/')
+            ltrim($assetFilePath, '/')
         );
     }
 }

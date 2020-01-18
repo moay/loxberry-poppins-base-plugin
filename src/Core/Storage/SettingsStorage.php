@@ -2,8 +2,6 @@
 
 namespace LoxBerryPlugin\Core\Storage;
 
-use LoxBerry\Logging\Logger;
-
 /**
  * Class SettingsStorage.
  */
@@ -19,6 +17,7 @@ class SettingsStorage
 
     /**
      * SettingsStorage constructor.
+     *
      * @param PersistantStorage $pluginStorage
      */
     public function __construct(PersistantStorage $pluginStorage)
@@ -31,7 +30,7 @@ class SettingsStorage
 
     /**
      * @param string $key
-     * @param null $default
+     * @param null   $default
      *
      * @return mixed|null
      */

@@ -76,7 +76,7 @@ class CronJobRunner
     public function executeRebootCronJobs()
     {
         foreach ($this->cronJobs as $cronJob) {
-            if ($cronJob->getInterval() !== self::INTERVAL_REBOOT) {
+            if (self::INTERVAL_REBOOT !== $cronJob->getInterval()) {
                 continue;
             }
             $this->executeCronJob($cronJob);

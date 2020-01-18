@@ -37,11 +37,11 @@ class TemplateElements extends AbstractExtension
     /**
      * TemplateElements constructor.
      *
-     * @param PathProvider $pathProvider
+     * @param PathProvider              $pathProvider
      * @param SystemConfigurationParser $systemConfiguration
-     * @param PluginDatabase $pluginDatabase
-     * @param Translations $translations
-     * @param string $packageName
+     * @param PluginDatabase            $pluginDatabase
+     * @param Translations              $translations
+     * @param string                    $packageName
      */
     public function __construct(
         PathProvider $pathProvider,

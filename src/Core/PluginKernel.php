@@ -34,7 +34,7 @@ class PluginKernel
      */
     public function __construct(string $pluginRootDirectory)
     {
-        $this->pluginRootDirectory = rtrim($pluginRootDirectory,'/');
+        $this->pluginRootDirectory = rtrim($pluginRootDirectory, '/');
         $this->setupErrorHandler();
         $this->loadContainer();
     }

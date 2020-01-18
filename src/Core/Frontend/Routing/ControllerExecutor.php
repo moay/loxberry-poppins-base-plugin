@@ -19,7 +19,7 @@ class ControllerExecutor
     /**
      * ControllerExecutor controller.
      *
-     * @param iterable $controllers
+     * @param iterable    $controllers
      * @param Environment $twig
      */
     public function __construct(iterable $controllers, Environment $twig)

@@ -61,7 +61,7 @@ class PersistantStorage
 
     /**
      * @param string $key
-     * @param null $default
+     * @param null   $default
      *
      * @return mixed|null
      */
@@ -77,7 +77,7 @@ class PersistantStorage
 
         $storedContent = file_get_contents($this->getStorageFolder().'/'.$this->index[$key]);
 
-        return $storedContent !== false ? $storedContent : null;
+        return false !== $storedContent ? $storedContent : null;
     }
 
     /**
@@ -129,6 +129,7 @@ class PersistantStorage
 
         if (!file_exists($indexFile)) {
             $this->index = [];
+
             return;
         }
 
@@ -147,6 +148,6 @@ class PersistantStorage
      */
     private function getStorageFolder(): string
     {
-        return rtrim($this->pathProvider->getPath(Paths::PATH_PLUGIN_DATA),'/').'/'.self::STORAGE_FOLDER;
+        return rtrim($this->pathProvider->getPath(Paths::PATH_PLUGIN_DATA), '/').'/'.self::STORAGE_FOLDER;
     }
 }

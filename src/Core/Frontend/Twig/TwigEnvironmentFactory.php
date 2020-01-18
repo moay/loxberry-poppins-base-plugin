@@ -6,9 +6,6 @@ use LoxBerry\ConfigurationParser\MiniserverInformation;
 use LoxBerry\Logging\Logger;
 use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
-use LoxBerryPlugin\Core\Frontend\Twig\Extensions\TemplateElements;
-use LoxBerryPlugin\Core\Frontend\Twig\Extensions\Templating;
-use LoxBerryPlugin\Core\Frontend\Twig\Extensions\Translations;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -39,9 +36,9 @@ class TwigEnvironmentFactory
      * TwigEnvironmentFactory constructor.
      *
      * @param AbstractExtension[] $extensions
-     * @param string $rootPath
+     * @param string              $rootPath
      * @param $packageName
-     * @param PluginDatabase $pluginDatabase
+     * @param PluginDatabase        $pluginDatabase
      * @param MiniserverInformation $miniserverInformation
      */
     public function __construct(
