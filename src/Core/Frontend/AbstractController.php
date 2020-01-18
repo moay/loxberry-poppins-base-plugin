@@ -19,11 +19,9 @@ abstract class AbstractController
     private $twig;
 
     /**
-     * AbstractController constructor.
-     *
      * @param Environment $twig
      */
-    public function __construct(Environment $twig)
+    public function setTwig(Environment $twig)
     {
         $this->twig = $twig;
     }
@@ -52,6 +50,10 @@ abstract class AbstractController
      */
     protected function render(string $view, ?array $parameters = []): Response
     {
+        if (!$this->twig instanceof Environment) {
+            throw new \LogicException('Twig must be passed to controller before trying to render');
+        }
+
         $content = $this->twig->render($view, $parameters);
 
         return new Response($content);

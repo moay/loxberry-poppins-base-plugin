@@ -11,4 +11,13 @@
     {{ logLevelSelect() }}
     <h2>{{ plugin.name }}</h2>
     <h3>{{ plugin.version }}</h3>
+    <div>{{ 'test.translation'|trans }}</div>
+    <div>{{ 'test.translation'|translate }}</div>
+    <div>{{ trans('test.translation2') }}</div>
+    <div>{{ translate('test.translation2') }}</div>
+
+    <form method="POST">
+        <input type="text" value="{{ fieldValue }}" name="newFieldValue" />
+        <button type="submit">{{ 'form.save'|trans }}</button>
+    </form>
 {% endblock %}

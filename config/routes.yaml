@@ -2,7 +2,7 @@ admin:
   home:
     route: '/'
     controller: 'LoxBerryPlugin\Controller\DummyController'
-    method: 'GET'
+    method: 'GET,POST'
     action: 'testPage'
   logs:
     route: '/logs'

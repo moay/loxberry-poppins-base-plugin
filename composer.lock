@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a80d1828267541fe18a6852ca4e74e5c",
+    "content-hash": "248dc07f1f1864f06e776ecee02bc8e8",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -68,16 +68,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "4c97f814aa2f0dd4d5bedc89181c10ef12c004c5"
+                "reference": "fff6f1e4f36be0e0d0b84d66b413d9dcb0c49130"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/4c97f814aa2f0dd4d5bedc89181c10ef12c004c5",
-                "reference": "4c97f814aa2f0dd4d5bedc89181c10ef12c004c5",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/fff6f1e4f36be0e0d0b84d66b413d9dcb0c49130",
+                "reference": "fff6f1e4f36be0e0d0b84d66b413d9dcb0c49130",
                 "shasum": ""
             },
             "require": {
@@ -125,20 +125,20 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2019-12-29T10:00:00+00:00"
+            "time": "2020-01-15T10:00:00+00:00"
         },
         {
             "name": "moay/loxberry-core",
-            "version": "1.0.0-beta7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moay/loxberry-php-core.git",
-                "reference": "fcce5d4fa153fc69739224a362f446d9823bcd65"
+                "reference": "b0862b75e86c2221849d711384dc251cb47017d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moay/loxberry-php-core/zipball/fcce5d4fa153fc69739224a362f446d9823bcd65",
-                "reference": "fcce5d4fa153fc69739224a362f446d9823bcd65",
+                "url": "https://api.github.com/repos/moay/loxberry-php-core/zipball/b0862b75e86c2221849d711384dc251cb47017d0",
+                "reference": "b0862b75e86c2221849d711384dc251cb47017d0",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 }
             ],
             "description": "The LoxBerry system library for PHP interactions",
-            "time": "2020-01-15T16:00:00+00:00"
+            "time": "2020-01-17T20:28:14+00:00"
         },
         {
             "name": "pear/config_lite",
@@ -1157,24 +1157,23 @@
     "packages-dev": [
         {
             "name": "composer/semver",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e"
+                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
-                "reference": "46d9139568ccb8d9e7cdd4539cab7347568a5e2e",
+                "url": "https://api.github.com/repos/composer/semver/zipball/c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
+                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.3.2 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.5 || ^5.0.5",
-                "phpunit/phpunit-mock-objects": "2.3.0 || ^3.0"
+                "phpunit/phpunit": "^4.5 || ^5.0.5"
             },
             "type": "library",
             "extra": {
@@ -1215,7 +1214,7 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2019-03-19T17:25:45+00:00"
+            "time": "2020-01-13T12:06:48+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -1727,16 +1726,16 @@
         },
         {
             "name": "moay/loxberry-plugin-pushinstall",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moay/loxberry-plugin-pushinstall.git",
-                "reference": "d0b177693c583383dd337c96c4e13824c1ebb704"
+                "reference": "a5296446b40cc7edaad3ca5e8fd7cd28925b2e60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moay/loxberry-plugin-pushinstall/zipball/d0b177693c583383dd337c96c4e13824c1ebb704",
-                "reference": "d0b177693c583383dd337c96c4e13824c1ebb704",
+                "url": "https://api.github.com/repos/moay/loxberry-plugin-pushinstall/zipball/a5296446b40cc7edaad3ca5e8fd7cd28925b2e60",
+                "reference": "a5296446b40cc7edaad3ca5e8fd7cd28925b2e60",
                 "shasum": ""
             },
             "bin": [
@@ -1755,7 +1754,7 @@
                 }
             ],
             "description": "Provides a quick way to push and install a loxberry plugin via ssh",
-            "time": "2020-01-16T13:04:50+00:00"
+            "time": "2020-01-17T18:48:52+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2554,16 +2553,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.1",
+            "version": "8.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7870c78da3c5e4883eaef36ae47853ebb3cb86f2"
+                "reference": "018b6ac3c8ab20916db85fa91bf6465acb64d1e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7870c78da3c5e4883eaef36ae47853ebb3cb86f2",
-                "reference": "7870c78da3c5e4883eaef36ae47853ebb3cb86f2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/018b6ac3c8ab20916db85fa91bf6465acb64d1e0",
+                "reference": "018b6ac3c8ab20916db85fa91bf6465acb64d1e0",
                 "shasum": ""
             },
             "require": {
@@ -2633,7 +2632,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-12-25T14:49:39+00:00"
+            "time": "2020-01-08T08:49:49+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -3953,12 +3952,13 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "pear/config_lite": 20,
-        "moay/loxberry-core": 10
+        "moay/loxberry-core": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

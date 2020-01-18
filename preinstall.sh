@@ -15,7 +15,6 @@ find ./translations/*.ini -maxdepth 0 ! -name . ! -name .. -print -exec mv {} ./
 rm -rf ./translations
 
 echo "<INFO> Moving all code folders to data"
-cp ./config/plugin.cfg ./plugin.cfg
 mkdir ./data
 find . -type d -maxdepth 1 ! -name "data" ! -name "resources" ! -name . -print -exec mv {} ./data \;
 

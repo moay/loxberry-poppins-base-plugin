@@ -8,8 +8,10 @@ use LoxBerry\System\Plugin\PluginDatabase;
 use LoxBerry\System\Plugin\PluginInformation;
 use LoxBerryPlugin\Core\Frontend\Twig\Extensions\LoxBerryTemplateElements;
 use LoxBerryPlugin\Core\Frontend\Twig\Extensions\LoxBerryTemplating;
+use LoxBerryPlugin\Core\Frontend\Twig\Extensions\Translations;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
+use Twig\Extension\AbstractExtension;
 use Twig\Extension\SandboxExtension;
 use Twig\Sandbox\SecurityPolicy;
 
@@ -30,11 +32,8 @@ class TwigEnvironmentFactory
     /** @var MiniserverInformation */
     private $miniserverInformation;
 
-    /** @var LoxBerryTemplating */
-    private $loxBerryTemplating;
-
-    /** @var LoxBerryTemplateElements */
-    private $templateElements;
+    /** @var AbstractExtension|array */
+    private $extensions;
 
     /**
      * TwigEnvironmentFactory constructor.
@@ -45,6 +44,7 @@ class TwigEnvironmentFactory
      * @param MiniserverInformation    $miniserverInformation
      * @param LoxBerryTemplating       $loxBerryTemplating
      * @param LoxBerryTemplateElements $templateElements
+     * @param Translations             $translations
      */
     public function __construct(
         string $rootPath,
@@ -52,13 +52,15 @@ class TwigEnvironmentFactory
         PluginDatabase $pluginDatabase,
         MiniserverInformation $miniserverInformation,
         LoxBerryTemplating $loxBerryTemplating,
-        LoxBerryTemplateElements $templateElements
+        LoxBerryTemplateElements $templateElements,
+        Translations $translations
     ) {
         $this->rootPath = $rootPath;
         $this->pluginInformation = $pluginDatabase->getPluginInformation($packageName);
         $this->miniserverInformation = $miniserverInformation;
-        $this->loxBerryTemplating = $loxBerryTemplating;
-        $this->templateElements = $templateElements;
+        $this->extensions[] = $loxBerryTemplating;
+        $this->extensions[] = $templateElements;
+        $this->extensions[] = $translations;
     }
 
     /**
@@ -95,8 +97,9 @@ class TwigEnvironmentFactory
         $sandboxPolicy = new SecurityPolicy();
         $twig->addExtension(new SandboxExtension($sandboxPolicy));
 
-        $twig->addExtension($this->loxBerryTemplating);
-        $twig->addExtension($this->templateElements);
+        foreach ($this->extensions as $extension) {
+            $twig->addExtension($extension);
+        }
     }
 
     /**

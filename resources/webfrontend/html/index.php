@@ -5,7 +5,7 @@ use LoxBerryPlugin\Core\PluginKernel;
 
 require_once 'REPLACELBPDATADIR/vendor/autoload.php';
 
-$kernel = new PluginKernel();
+$kernel = new PluginKernel('REPLACELBPDATADIR');
 
 $pageRouter = $kernel->getContainer()->get(PageRouterInterface::class);
 $pageRouter->process(true);

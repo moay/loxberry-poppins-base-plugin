@@ -7,9 +7,9 @@ use LoxBerry\Logging\Logger;
 use LoxBerry\System\LowLevelExecutor;
 use LoxBerry\System\PathProvider;
 use LoxBerry\System\Plugin\PluginDatabase;
+use LoxBerryPlugin\Core\DependencyInjection\PluginParameterLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
@@ -17,21 +17,24 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class PluginKernel
 {
-    const CONFIG_DIRECTORY = __DIR__.'/../../config';
-    const DEFAULT_PLUGIN_CONFIGURATION = 'pluginConfiguration.php';
-    const ORIGINAL_PLUGIN_CONFIGURATION = __DIR__.'/../../config/plugin.cfg';
+    const CONFIG_DIRECTORY = '/config';
+    const ORIGINAL_PLUGIN_CONFIGURATION = '/config/plugin.cfg';
     const DEFAULT_SERVICES_CONFIGURATION = 'services.yaml';
 
     /** @var ContainerBuilder */
     private $container;
 
+    /** @var string */
+    private $pluginRootDirectory;
+
     /**
      * PluginKernel constructor.
      *
-     * @param string $pluginConfigurationFile
+     * @param string $pluginRootDirectory
      */
-    public function __construct()
+    public function __construct(string $pluginRootDirectory)
     {
+        $this->pluginRootDirectory = rtrim($pluginRootDirectory,'/');
         $this->setupErrorHandler();
         $this->loadContainer();
     }
@@ -40,11 +43,14 @@ class PluginKernel
     {
         $containerBuilder = new ContainerBuilder();
 
-        $yamlLoader = new YamlFileLoader($containerBuilder, new FileLocator(self::CONFIG_DIRECTORY));
-        $yamlLoader->load(self::DEFAULT_SERVICES_CONFIGURATION);
+        $pluginParameterLoader = new PluginParameterLoader(
+            $this->pluginRootDirectory.self::ORIGINAL_PLUGIN_CONFIGURATION,
+            $this->pluginRootDirectory
+        );
+        $pluginParameterLoader->loadPluginParameters($containerBuilder);
 
-        $phpLoader = new PhpFileLoader($containerBuilder, new FileLocator(self::CONFIG_DIRECTORY));
-        $phpLoader->load(self::DEFAULT_PLUGIN_CONFIGURATION);
+        $yamlLoader = new YamlFileLoader($containerBuilder, new FileLocator($this->pluginRootDirectory.self::CONFIG_DIRECTORY));
+        $yamlLoader->load(self::DEFAULT_SERVICES_CONFIGURATION);
 
         $containerBuilder->compile();
 
@@ -62,8 +68,8 @@ class PluginKernel
     private function setupErrorHandler()
     {
         $pluginDataBase = new PluginDatabase(new PathProvider(new LowLevelExecutor()));
-        if (file_exists(self::ORIGINAL_PLUGIN_CONFIGURATION)) {
-            $configuration = new ConfigurationParser(self::ORIGINAL_PLUGIN_CONFIGURATION);
+        if (file_exists($this->pluginRootDirectory.self::ORIGINAL_PLUGIN_CONFIGURATION)) {
+            $configuration = new ConfigurationParser($this->pluginRootDirectory.self::ORIGINAL_PLUGIN_CONFIGURATION);
             $pluginName = $configuration->get('PLUGIN', 'NAME');
             $logLevel = $pluginDataBase->getPluginInformation($pluginName)->getLogLevel();
         }

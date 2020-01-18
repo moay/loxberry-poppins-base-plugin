@@ -6,6 +6,7 @@ use LoxBerryPlugin\Core\Exception\RouteNotFoundException;
 use LoxBerryPlugin\Core\Frontend\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
 /**
  * Class ControllerExecutor.
@@ -19,13 +20,15 @@ class ControllerExecutor
      * ControllerExecutor controller.
      *
      * @param iterable $controllers
+     * @param Environment $twig
      */
-    public function __construct(iterable $controllers)
+    public function __construct(iterable $controllers, Environment $twig)
     {
         foreach ($controllers as $controller) {
             if (!$controller instanceof AbstractController) {
                 throw new \RuntimeException('Misconfigured controller or misusage of ControllerExecutor');
             }
+            $controller->setTwig($twig);
             $this->controllers[] = $controller;
         }
     }
