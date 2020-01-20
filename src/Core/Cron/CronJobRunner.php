@@ -44,6 +44,9 @@ class CronJobRunner
     /** @var Logger */
     private $logger;
 
+    /** @var bool */
+    private $logStarted = false;
+
     /**
      * CronJobRunner constructor.
      *
@@ -68,6 +71,9 @@ class CronJobRunner
                 continue;
             }
             if (0 === round(time() / 60) % $cronJob->getInterval()) {
+                if (!$this->logStarted) {
+                    $this->logger->logStart('regular');
+                }
                 $this->executeCronJob($cronJob);
             }
         }
@@ -78,6 +84,9 @@ class CronJobRunner
         foreach ($this->cronJobs as $cronJob) {
             if (self::INTERVAL_REBOOT !== $cronJob->getInterval()) {
                 continue;
+            }
+            if (!$this->logStarted) {
+                $this->logger->logStart('reboot');
             }
             $this->executeCronJob($cronJob);
         }

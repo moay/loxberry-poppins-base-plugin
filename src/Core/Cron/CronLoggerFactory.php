@@ -50,7 +50,7 @@ class CronLoggerFactory
         return $this->loggerFactory->__invoke(
             self::LOG_NAME,
             $this->packageName,
-            $logFileDirectory.'/cron.log'
+            $logFileDirectory.'/'.date('Ymd-His_').'cron.log'
         );
     }
 }
