@@ -1,6 +1,3 @@
-home:
-  title: Overview
-  route: home
-logs:
-  title: Logfiles
-  route: logs
+#home:
+#  title: Welcome
+#  route: home

@@ -1,0 +1,7 @@
+# The general help url for your plugin. Will be displayed on all pages.
+url: https://google.com
+
+# Provide
+# [Route name]: [Twig view in your views folder]
+pages:
+  home: help/home.html.twig

@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use LoxBerryPlugin\Core\Cron\CronJobRunner;
-use LoxBerryPlugin\Core\PluginKernel;
+use LoxBerryPoppins\Cron\CronJobRunner;
+use LoxBerryPoppins\PluginKernel;
 
 require_once 'REPLACELBPDATADIR/vendor/autoload.php';
 

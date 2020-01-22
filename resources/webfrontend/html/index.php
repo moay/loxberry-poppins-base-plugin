@@ -1,7 +1,7 @@
 <?php
 
-use LoxBerryPlugin\Core\Frontend\Routing\PageRouterInterface;
-use LoxBerryPlugin\Core\PluginKernel;
+use LoxBerryPoppins\Frontend\Routing\PageRouterInterface;
+use LoxBerryPoppins\PluginKernel;
 
 require_once 'REPLACELBPDATADIR/vendor/autoload.php';
 

@@ -1,17 +1,15 @@
-admin:
-  home:
-    route: '/'
-    controller: 'LoxBerryPlugin\Controller\DummyController'
-    method: 'GET,POST'
-    action: 'testPage'
-  logs:
-    route: '/logs'
-    controller: 'LoxBerryPlugin\Controller\DummyController'
-    method: 'GET'
-    action: 'logsPage'
+home:
+  route: '/'
+  controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'
+  action: 'demoPage'
+home2:
+  route: '/test'
+  controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'
+  action: 'demoPage'
 
-#public:
-#  default:
+#  Full configuration could look like this:
+#  someRoute:
 #    route: '/'
-#    controller: 'LoxBerryPlugin\Controller\MyPublicController'
-#    method: 'GET,POST'
+#    controller: 'LoxBerryPoppinsPlugin\Controller\SomeController'
+#    method: 'GET,POST' <- GET is assumed if not provided
+#    public: true <- false is assumed if not provided

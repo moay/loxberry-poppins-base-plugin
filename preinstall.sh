@@ -19,7 +19,7 @@ if [[ $COMPOSER -ne 0 ]]; then
 fi
 
 echo "<INFO> Preparing vendor libraries"
-php ./composer install --no-interaction --no-dev --no-progress
+php ./composer install --no-interaction --no-dev --no-progress --prefer-dist
 echo "<OK> Done installing vendor libraries"
 
 echo "<INFO> Moving translation files to templates folder"

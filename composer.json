@@ -1,27 +1,17 @@
 {
-    "name": "moay/loxberry-plugin",
-    "description": "The base for LoxBerry plugins in modern, clean PHP",
+    "name": "moay/loxberry-poppins-base-plugin",
+    "description": "The base plugin for LoxBerry Poppins",
     "type": "project",
     "require": {
         "php": ">=7.2",
-        "pear/config_lite": "dev-master",
-        "moay/loxberry-core": "dev-master#6108abf85c30f05c362e4e6c98e7f6c2f1a448cf",
-        "symfony/yaml": "^5.0",
-        "symfony/config": "^5.0",
-        "symfony/dependency-injection": "^5.0",
-        "symfony/finder": "^5.0",
-        "symfony/http-foundation": "^5.0",
-        "twig/twig": "^3.0",
-        "filp/whoops": "^2.7",
-        "symfony/var-dumper": "^5.0",
+        "moay/loxberry-core": "dev-master#e656a83d61ce9d75f3ac0b9ce7bec213886a52f8",
+        "moay/loxberry-poppins": "dev-master#b309035ac5f3be4d266289890fe31dddfd3edb94",
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.3",
-        "php-coveralls/php-coveralls": "^2.1",
-        "friendsofphp/php-cs-fixer": "^2",
         "moay/loxberry-plugin-pushinstall": "^1"
     },
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
@@ -31,7 +21,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "LoxBerryPlugin\\": "src/",
+            "LoxBerryPoppinsPlugin\\": "src/",
             "Tests\\": "tests/"
         }
     }

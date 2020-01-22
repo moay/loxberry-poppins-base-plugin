@@ -1,9 +1,9 @@
 <?php
 
-namespace LoxBerryPlugin\CronJobs;
+namespace LoxBerryPoppinsPlugin\CronJobs;
 
-use LoxBerryPlugin\Core\Cron\AbstractCronJob;
-use LoxBerryPlugin\Core\Cron\CronJobRunner;
+use LoxBerryPoppins\Cron\AbstractCronJob;
+use LoxBerryPoppins\Cron\CronJobRunner;
 
 /**
  * Class FailingDummyCronJob.

@@ -1,10 +1,17 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'pages/adminBasePage.html.twig' %}
 
 {% block htmlHead %}
 <script>console.log('test');</script>
 {% endblock %}
 
 {% block body %}
+    <img src="{{ assetUrl('img/poppins-logo.png') }}" />
+    <h2>{{ trans('demo.headline') }}</h2>
+    <p>{{ trans('demo.explanation_1')|raw }}</p>
+    <p>{{ trans('demo.explanation_2') }}</p>
+    <p>{{ trans('demo.have_fun') }}</p>
+
+
     {{ logListButton('Cron', 'buttons.logfile') }}
     {{ logFileButton('Cron', 'buttons.logfile') }}
     {{ miniserverSelect('labels.miniserver') }}
@@ -15,10 +22,6 @@
     <div>{{ 'test.translation'|translate }}</div>
     <div>{{ trans('test.translation2') }}</div>
     <div>{{ translate('test.translation2') }}</div>
-
-    <a data-role-btn href="{{ adminRouteUrl('logs') }}">Logs</a>
-
-    <img src="{{ assetUrl('img/testimage.jpg') }}" />
 
     <form method="POST">
         <input type="text" value="{{ fieldValue }}" name="newFieldValue" />
