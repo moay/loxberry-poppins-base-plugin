@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abf69a3b0faeef76afbe299b8e8b6a4c",
+    "content-hash": "d09825b56677345369cc65a29df6774e",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/moay/loxberry-poppins.git",
-                "reference": "b309035ac5f3be4d266289890fe31dddfd3edb94"
+                "reference": "97ab83c863f33604060cc5911544771484ff2caf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moay/loxberry-poppins/zipball/b309035ac5f3be4d266289890fe31dddfd3edb94",
-                "reference": "b309035ac5f3be4d266289890fe31dddfd3edb94",
+                "url": "https://api.github.com/repos/moay/loxberry-poppins/zipball/97ab83c863f33604060cc5911544771484ff2caf",
+                "reference": "97ab83c863f33604060cc5911544771484ff2caf",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 }
             ],
             "description": "A PHP Framework for LoxBerry plugins",
-            "time": "2020-01-22T20:15:53+00:00"
+            "time": "2020-01-23T20:54:48+00:00"
         },
         {
             "name": "monolog/monolog",

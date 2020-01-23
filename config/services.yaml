@@ -1,11 +1,14 @@
+# This is the main service configuration file. This file is very important as it configures the dependency injection container.
+# Make sure to know what you are doing when changing existing configurations.
+
 services:
   _defaults:
     autowire: true
     autoconfigure: true
     public: false
     bind:
-      $packageDirectory: '%plugin.directory%'
-      $packageName: '%plugin.name%'
+      $pluginDirectory: '%plugin.directory%'
+      $pluginName: '%plugin.name%'
       $cronLogger: '@logger.cron'
       $rootPath: '%runtime.root_dir%'
 
@@ -19,10 +22,8 @@ services:
 
   LoxBerryPoppinsPlugin\:
     resource: '../src/*'
-
   LoxBerryPoppins\:
     resource: '../vendor/moay/loxberry-poppins/src/*'
-
   LoxBerry\:
     resource: '../vendor/moay/loxberry-core/src/*'
 

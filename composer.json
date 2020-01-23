@@ -5,7 +5,7 @@
     "require": {
         "php": ">=7.2",
         "moay/loxberry-core": "dev-master#e656a83d61ce9d75f3ac0b9ce7bec213886a52f8",
-        "moay/loxberry-poppins": "dev-master#b309035ac5f3be4d266289890fe31dddfd3edb94",
+        "moay/loxberry-poppins": "dev-master#97ab83c863f33604060cc5911544771484ff2caf",
         "ext-json": "*"
     },
     "require-dev": {

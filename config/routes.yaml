@@ -2,6 +2,7 @@ home:
   route: '/'
   controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'
   action: 'demoPage'
+  method: 'GET, POST'
 home2:
   route: '/test'
   controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'

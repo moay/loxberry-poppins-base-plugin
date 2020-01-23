@@ -24,7 +24,7 @@
     <div>{{ translate('test.translation2') }}</div>
 
     <form method="POST">
-        <input type="text" value="{{ fieldValue }}" name="newFieldValue" />
+        <input type="text" value="{{ settings.fieldValue }}" name="newFieldValue" />
         <button type="submit">{{ 'form.save'|trans }}</button>
     </form>
 {% endblock %}
