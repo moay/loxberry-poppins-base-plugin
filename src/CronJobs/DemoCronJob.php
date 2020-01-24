@@ -6,17 +6,17 @@ use LoxBerryPoppins\Cron\AbstractCronJob;
 use LoxBerryPoppins\Cron\CronJobRunner;
 
 /**
- * Class DummyCronJob.
+ * Class DemoCronJob.
  */
-class DummyCronJob extends AbstractCronJob
+class DemoCronJob extends AbstractCronJob
 {
     public function getInterval()
     {
-        return CronJobRunner::INTERVAL_EVERY_TEN_MINUTES;
+        return CronJobRunner::INTERVAL_EVERY_FIFTEEN_MINUTES;
     }
 
     public function execute()
     {
-        $this->getLogger()->info('Cronjob executed');
+        $this->getLogger()->info('The demo cron job was executed. Remove it or do something useful here.');
     }
 }

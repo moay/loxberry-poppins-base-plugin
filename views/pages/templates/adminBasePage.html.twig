@@ -3,7 +3,7 @@
 {% else %}
     {{ loxBerryHtmlHead(pageTitle|default(plugin.name)) }}
 {% endif %}
-{{ loxBerryPageStart(pageTitle|default(plugin.name), true) }}
+{{ loxBerryPageStart(pageTitle|default(plugin.title)|default(plugin.name)) }}
 
 {% block body %}{% endblock %}
 

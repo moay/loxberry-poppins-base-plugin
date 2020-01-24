@@ -24,10 +24,14 @@ class DemoController extends AbstractController
      */
     public function demoPage()
     {
-        if ($this->getRequest()->request->has('newFieldValue')) {
-            $this->settings->set('fieldValue', $this->getRequest()->request->get('newFieldValue'));
-        }
+        return $this->render('pages/home.html.twig');
+    }
 
-        return $this->render('pages/home.html.twig', ['settings' => $this->settings]);
+    /**
+     * @return Response
+     */
+    public function logsPage()
+    {
+        return $this->render('pages/logs.html.twig');
     }
 }

@@ -1,10 +1,8 @@
-[![Build Status](https://travis-ci.org/moay/loxberry-php-base-plugin.svg?branch=master)](https://travis-ci.org/moay/loxberry-plugin-base-php)
-
-![LoxBerry Poppins](https://user-images.githubusercontent.com/3605512/72723346-c37fb280-3b80-11ea-92c6-72d2498802bf.jpg)
+![LoxBerry Poppins](https://user-images.githubusercontent.com/3605512/72895177-1bebb700-3d1d-11ea-8393-7e9f3a7a0207.png)
 
 # LoxBerry Poppins Base Plugin
 
-LoxBerry Poppins is a PHP Framework for LoxBerry plugins. This is the starter setup for new plugins.
+LoxBerry Poppins is a PHP Framework for LoxBerry plugins. This is the starter package for new plugins.
 
 ### Documentation
 

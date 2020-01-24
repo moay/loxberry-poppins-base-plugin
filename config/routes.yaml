@@ -2,11 +2,11 @@ home:
   route: '/'
   controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'
   action: 'demoPage'
-  method: 'GET, POST'
-home2:
-  route: '/test'
+
+logs:
+  route: '/logs'
   controller: 'LoxBerryPoppinsPlugin\Controller\DemoController'
-  action: 'demoPage'
+  action: 'logsPage'
 
 #  Full configuration could look like this:
 #  someRoute:
