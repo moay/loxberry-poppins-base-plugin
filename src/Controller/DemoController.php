@@ -3,7 +3,6 @@
 namespace LoxBerryPoppinsPlugin\Controller;
 
 use LoxBerryPoppins\Frontend\AbstractController;
-use LoxBerryPoppins\Storage\SettingsStorage;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -11,14 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class DemoController extends AbstractController
 {
-    /** @var SettingsStorage */
-    private $settings;
-
-    public function __construct(SettingsStorage $settings)
-    {
-        $this->settings = $settings;
-    }
-
     /**
      * @return Response
      */
